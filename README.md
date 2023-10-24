@@ -60,7 +60,7 @@ Ansible instructions are organized into something called "playbooks." Think of a
 ```
 In this playbook, Ansible will install Apache and start the Apache service on the computers in the "web_servers" group.
 
-# Ansible Playbook: Configure Web Server
+## Ansible Playbook: Configure Web Server
 
 This Ansible playbook is like a set of instructions for configuring web servers. Let's break it down:
 
