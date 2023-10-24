@@ -20,7 +20,7 @@ Ansible doesn't need special software on the computers it's working with. It use
 ```
 In this example, Ansible is instructed to install the Apache web server on machines in the "web_servers" group.
 
-Example Explained:
+#### Example Explained:
 
 Let's say you have a bunch of web servers (like "web_servers"), and you want to make sure they all have the Apache web server installed. You create an Ansible playbook like the one you provided.
 
