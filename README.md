@@ -96,9 +96,8 @@ Under the "tasks" section, you list the specific actions or tasks you want to pe
 
 - `state: started`: Here, you're telling Ansible to ensure that the "apache2" service is in a "started" state. If it's not running, Ansible will start it.
 
-In Simple Terms:
-
-This Ansible playbook is like a to-do list for configuring web servers. It ensures that the Apache web server is both installed and running on all the servers within the "web_servers" group. It's like having a step-by-step recipe for setting up a web server, and Ansible follows the recipe on all the selected servers.
+**In Simple Terms:**
+This Ansible playbook is like a to-do list for configuring web servers. It ensures that the Apache web server is both installed and running on all the servers within the "`web_servers`" group. It's like having a step-by-step recipe for setting up a web server, and Ansible follows the recipe on all the selected servers.
 
 By using this playbook, you can easily configure and manage your web servers without manual intervention. It's automation magic for IT tasks!
 
