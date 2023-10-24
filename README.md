@@ -30,7 +30,7 @@ Let's say you have a bunch of web servers (like "web_servers"), and you want to 
 - `- name: Install Apache`: Another name for the specific task you're doing.
 - `apt`: Here, you're telling Ansible to use the apt module, which deals with package management.
 - `name: apache2`: This specifies the name of the package you want to work with, in this case, "`apache2`".
-- `state: present`: This means you want to ensure that the "`apache2`" package is installed (i.e., in a "present" state).
+- `state: present`: This means you want to ensure that the "`apache2`" package is installed (i.e., in a "`present`" state).
 
 ## Agentless Approach
 Unlike some other automation tools, Ansible doesn't need to install anything on the computers it's managing. It connects to them using SSH, like how you might log in remotely to a computer
