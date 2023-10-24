@@ -24,19 +24,13 @@ In this example, Ansible is instructed to install the Apache web server on machi
 
 Let's say you have a bunch of web servers (like "web_servers"), and you want to make sure they all have the Apache web server installed. You create an Ansible playbook like the one you provided.
 
-- `name`: Example Task: This is the name of the task you're performing. It's like a title for this step in your playbook.
-
-- `hosts`: web_servers: It tells Ansible which group of servers this task should be performed on. In this case, it's the group named "web_servers."
-
+- `name: Example Task`: This is the name of the task you're performing. It's like a title for this step in your playbook.
+- `hosts: web_servers`: It tells Ansible which group of servers this task should be performed on. In this case, it's the group named "`web_servers`".
 - `tasks`: This is where you define what you want to do on those servers.
-
 - `- name: Install Apache`: Another name for the specific task you're doing.
-
 - `apt`: Here, you're telling Ansible to use the apt module, which deals with package management.
-
-- `name`: apache2: This specifies the name of the package you want to work with, in this case, "apache2."
-
-- `state`: present: This means you want to ensure that the "apache2" package is installed (i.e., in a "present" state).
+- `name: apache2`: This specifies the name of the package you want to work with, in this case, "`apache2`".
+- `state: present`: This means you want to ensure that the "`apache2`" package is installed (i.e., in a "present" state).
 
 ## Agentless Approach
 Unlike some other automation tools, Ansible doesn't need to install anything on the computers it's managing. It connects to them using SSH, like how you might log in remotely to a computer
