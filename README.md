@@ -59,3 +59,25 @@ db_servers:
 In this inventory, we have two groups: "web_servers" and "db_servers," and each group has the IP addresses of the computers.
 
 So, Ansible makes IT tasks easier by using plain text instructions (YAML playbooks), connecting to computers remotely without needing special software, and helping manage multiple computers working together. It's like having a friendly robot to handle repetitive tasks and ensure your IT systems run smoothly.
+
+# Ansible Hosts File: Managing Your Server Inventory
+
+## What is a Hosts File in Ansible?
+
+In Ansible, the hosts file is like a contact list that tells Ansible which computers it should manage and how to connect to them. Each computer is referred to as a "host." Here's an example of a simple hosts file:
+
+```yaml
+# File name: hosts
+# Description: Inventory file for your application. Defines machine type abc node to deploy specific artifacts.
+# Defines machine type def node to upload metadata.
+
+[abc-node]
+server1 ansible_host=<target machine for DU deployment> ansible_user=<Ansible user> ansible_connection=ssh
+
+[def-node]
+server2 ansible_host=<target machine for artifact upload> ansible_user=<Ansible user> ansible_connection=ssh
+
+
+
+You can copy and paste this Markdown code into your GitHub README.md file to create a well-structured document.
+
