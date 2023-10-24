@@ -74,7 +74,7 @@ Under the "tasks" section, you list the specific actions or tasks you want to pe
 **Task 2 - Start Apache Service**:
 - `name: Start Apache Service`: Another descriptive label for this task.
 - `service`: This is the Ansible module used for managing services on the servers.
-- `name: apache2`: It specifies the service you want to work with, which is the "apache2" service.
+- `name: apache2`: It specifies the service you want to work with, which is the "`apache2`" service.
 - `state: started`: Here, you're telling Ansible to ensure that the "`apache2`" service is in a "started" state. If it's not running, Ansible will start it.
 
 **In Simple Terms:**
