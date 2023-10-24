@@ -135,18 +135,18 @@ With Ansible, you can create what's called a "playbook." A playbook is like a se
 ```
 In this example playbook:
 
-- "Install WebLogic" is the name of the task.
-- "your_computers" is where you list the IP addresses or names of your computers.
+- "`Install WebLogic`" is the name of the task.
+- "`your_computers`" is where you list the IP addresses or names of your computers.
 - The playbook tells Ansible to download the WebLogic installer from a website and install it.
 
 ## Getting Started
 
 To get started with Ansible's configuration management magic, follow these simple steps:
 
-1. `**Create Your Playbook**`: Write a playbook like the example provided. Specify the tasks you want to automate.
+1. **Create Your Playbook**: Write a playbook like the example provided. Specify the tasks you want to automate.
 
-2. `**Define Your Inventory**`: Update your inventory file with a list of your target computers (IP addresses or names). This is where Ansible will work its magic.
+2. **Define Your Inventory**: Update your inventory file with a list of your target computers (IP addresses or names). This is where Ansible will work its magic.
 
-3. `**Run the Playbook**`: Execute the playbook from your control machine. Ansible will take care of the rest, making sure all your machines are up to date and consistent.
+3. **Run the Playbook**: Execute the playbook from your control machine. Ansible will take care of the rest, making sure all your machines are up to date and consistent.
 
 That's it! Ansible becomes your super-efficient assistant, ensuring all your computers have the same software and configurations. You provide the recipe (playbook), and Ansible handles the hard work. It's like magic for IT tasks!
