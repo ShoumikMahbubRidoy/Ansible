@@ -1,4 +1,4 @@
-# Ansible: Simplifying IT Automation
+# Basic of Ansible: Simplifying IT Automation
 
 ## What is Ansible?
 
