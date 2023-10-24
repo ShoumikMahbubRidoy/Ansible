@@ -59,42 +59,28 @@ In this playbook, Ansible will install Apache and start the Apache service on th
 This Ansible playbook is like a set of instructions for configuring web servers. Let's break it down:
 
 **1. Playbook Name**:
-
 - `name: Configure Web Server`: This line gives a name to the entire playbook. Think of it as a title for the tasks you want to perform. In this case, it's all about configuring web servers.
-
 **2. Hosts**:
-
-- `hosts: web_servers`: Here, you specify the group of servers you want to configure, known as "web_servers." The tasks in this playbook will be executed on all the servers within this group.
-
+- `hosts: web_servers`: Here, you specify the group of servers you want to configure, known as "`web_servers`" The tasks in this playbook will be executed on all the servers within this group.
 **3. Tasks**:
-
 Under the "tasks" section, you list the specific actions or tasks you want to perform on the selected servers.
 
 **Task 1 - Install Apache**:
-
 - `name: Install Apache`: This is a descriptive label for the task.
-
 - `apt`: This is the Ansible module for managing software packages.
-
-- `name: apache2`: It specifies the package you want to work with, in this case, "apache2." It means you want to ensure that the Apache web server package is installed on the servers.
-
-- `state: present`: This part tells Ansible to ensure that the "apache2" package is present (installed) on the servers. If it's not installed, Ansible will take care of installing it.
+- `name: apache2`: It specifies the package you want to work with, in this case, "`apache2`" It means you want to ensure that the Apache web server package is installed on the servers.
+- `state: present`: This part tells Ansible to ensure that the "`apache2`" package is present (installed) on the servers. If it's not installed, Ansible will take care of installing it.
 
 **Task 2 - Start Apache Service**:
-
 - `name: Start Apache Service`: Another descriptive label for this task.
-
 - `service`: This is the Ansible module used for managing services on the servers.
-
 - `name: apache2`: It specifies the service you want to work with, which is the "apache2" service.
-
-- `state: started`: Here, you're telling Ansible to ensure that the "apache2" service is in a "started" state. If it's not running, Ansible will start it.
+- `state: started`: Here, you're telling Ansible to ensure that the "`apache2`" service is in a "started" state. If it's not running, Ansible will start it.
 
 **In Simple Terms:**
 This Ansible playbook is like a to-do list for configuring web servers. It ensures that the Apache web server is both installed and running on all the servers within the "`web_servers`" group. It's like having a step-by-step recipe for setting up a web server, and Ansible follows the recipe on all the selected servers.
 
 By using this playbook, you can easily configure and manage your web servers without manual intervention. It's automation magic for IT tasks!
-
 
 ## Multi-Tier Deployment
 Ansible is good at managing many computers that work together. For example, it can set up a web server, a database server, and connect them properly. Imagine you're building a house. Instead of focusing on just one brick at a time, Ansible helps you see the whole structure and how the bricks fit together.
