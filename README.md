@@ -185,7 +185,7 @@ Imagine you have ten computers in your office, and you want to update the softwa
 
 3. Run the playbook from your computer.
 
-![Alt Text](./Ansible.png)
+!(./Ansible.png)
 
 Ansible would connect to each of the ten computers, send the "Update Software" module, and ensure that the software is updated. When it's all done, Ansible would clean up by removing the modules.
 
