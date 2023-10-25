@@ -16,10 +16,22 @@ student:
       score: 88
 ```
 Let's break this down:
-1. The document starts with ---, which is optional and used to indicate the beginning of a YAML document.
-2. We define a dictionary or key-value pair named student. The key (in this case, "student") is followed by a colon and a space.
-3. The student's details are represented as nested key-value pairs, indented with spaces. For example, name: John Doe indicates the student's name is "John Doe."
-4. The grades field is also a dictionary, but it has a list of subjects and scores. This is represented using a hyphen - followed by a space for each item in the list. For example, - subject: Math indicates the subject is "Math," and the student's score is 95.
+1. The document starts with `---`, which is optional and used to indicate the beginning of a YAML document.
+2. We define a dictionary or key-value pair named `student`. The key (in this case, "student") is followed by a colon and a space.
+3. The student's details are represented as nested key-value pairs, indented with spaces. For example, `name: John Doe` indicates the student's name is "John Doe."
+4. The grades field is also a dictionary, but it has a list of subjects and scores. This is represented using a hyphen - followed by a space for each item in the list. For example, `- subject: Math` indicates the subject is "Math," and the student's score is 95.
+   - In YAML, the hyphen (`-`) is used to indicate the beginning of a list or sequence. It represents individual elements in a list or an array. In the example you provided:
+    ```yaml
+    Copy code
+    grades:
+      - subject: Math
+        score: 95
+      - subject: History
+        score: 88
+    ```
+    The hyphen before each item (e.g., `- subject: Math`) signifies that you are creating a list of dictionaries or key-value pairs. In this case, you have a list of "grades," and each grade is represented as a dictionary with two key-value pairs: "subject" and "score."
+
+    So, the use of the hyphen (`-`) in YAML is a way to define sequences or lists of items within your data structure. It's an essential part of YAML's syntax for creating arrays or ordered collections of data.
 
 Here's a breakdown of the structure:
 - The outermost level represents the "student" dictionary.
