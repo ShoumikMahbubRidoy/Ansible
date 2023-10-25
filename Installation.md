@@ -1,4 +1,4 @@
-# installation process
+# Installation Process
 Let's break down the installation process of Ansible for different operating systems, including CentOS, macOS, Windows 10 & 11, Ubuntu, Kali, and RedHat Enterprise. We'll keep it simple and beginner-friendly.
 
 ## 1. CentOS and RedHat Enterprise:
