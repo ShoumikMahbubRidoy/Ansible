@@ -59,8 +59,8 @@ Abbreviations can make your YAML files more compact and easier to read when deal
 
 ## Representing List
 In YAML, you can create lists by using the hyphen (-) followed by a space, and each element of the list is written in a new line. Here's an example of a student's course list in YAML:
+**Copy code**
 ```yaml
-Copy code
 courses:
   - Math
   - History
