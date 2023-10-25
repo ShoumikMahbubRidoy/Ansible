@@ -4,8 +4,8 @@ Let's break down the installation process of Ansible for different operating sys
 ## 1. CentOS and RedHat Enterprise:
 On CentOS and RedHat, you can install Ansible using the yum package manager.
 Open a terminal and run these commands:
+**Copy code**
 ```bash
-Copy code
 sudo yum install epel-release  # Install the EPEL repository (extra packages)
 sudo yum install ansible       # Install Ansible
 ```
@@ -13,9 +13,8 @@ sudo yum install ansible       # Install Ansible
 On Ubuntu, you can use the apt package manager to install Ansible.
 
 Open a terminal and run these commands:
-
+**Copy code**
 ```bash
-Copy code
 sudo apt update               # Update the package list
 sudo apt install ansible      # Install Ansible
 ```
@@ -23,10 +22,12 @@ sudo apt install ansible      # Install Ansible
 ## 3. macOS:
 On macOS, you can use pip, a Python package manager, to install Ansible. First, ensure you have Python installed.
 Open a terminal and run these commands:
+**Copy code**
 ```bash
-Copy code
-brew install python          # Install Python (if not already installed)
-pip install ansible          # Install Ansible using pip
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"    # Install Homebrew (if not already installed)
+brew install python                                                                                # Install Python (if not already installed)
+pip install ansible                                                                                # Install Ansible using pip
+brew install ansible                                                                               # Install Ansible using Homebrew
 ```
 
 ## 4. Windows 10 & 11:
@@ -38,9 +39,9 @@ Ansible is primarily designed for Unix-like systems, so it doesn't run natively 
 ## 5. Kali Linux:
 Kali Linux is based on Debian, so you can use the apt package manager to install Ansible, just like you would on Ubuntu.
 Open a terminal and run these commands:
+**Copy code**
 ```
 bash
-Copy code
 sudo apt update               # Update the package list
 sudo apt install ansible      # Install Ansible
 ```
