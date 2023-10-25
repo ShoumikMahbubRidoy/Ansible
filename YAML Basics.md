@@ -79,7 +79,7 @@ courses:
 - The courses, like "Math," "History," and "Computer Science," are each listed on a new line with the same level of indentation.
 This creates a list of courses for the student, making it easy to understand and organize related information. Lists are very useful in YAML for situations where you need to represent multiple items or values in a structured manner.
 
-## List inside Dictionaries
+### List inside Dictionaries
 We can use lists inside dictionaries in YAML, where the value of a key is a list. This is a common way to represent structured data, especially when you need to associate multiple items with a single key. Here's an example of a student's extracurricular activities where the value of a key is a list:
 ```yaml
 student:
@@ -96,3 +96,33 @@ student:
 Now, let's focus on the activities key:
 - `activities` is another key in the `student` dictionary, and its value is a list of extracurricular activities in which the student is involved.
 - The list is represented using the hyphen (`-`) and space for each activity item, such as "Basketball," "Chess Club," and "Coding Club."
+
+### List of Dictionaries
+you can create a list of dictionaries in YAML, which is a powerful way to represent structured data, especially when you have multiple items with different properties. Let's use an example of a student with a list of courses and their grades to illustrate this concept:
+```yaml
+student:
+  name: John Doe
+  age: 20
+  major: Computer Science
+  courses:
+    - course:
+        name: Math
+        grade: 95
+    - course:
+        name: History
+        grade: 88
+    - course:
+        name: Computer Science
+        grade: 92
+```
+**In this example:**
+- `student` is the main dictionary (or key) that contains information about the student.
+- Inside the `student` dictionary, there are key-value pairs for the student's `name`, `age`, and `major`, which provide details about the student.
+- Now, let's look at the `courses` key:
+  - `courses` is another key in the `student` dictionary, and its value is a list.
+  - This list is made up of dictionaries, where each dictionary represents a course taken by the student. Each course dictionary has its own set of key-value pairs.
+  - For instance, the first course is represented as a dictionary with a `name` key and a `grade` key. The `name` key holds the course name (e.g., "Math"), and the grade key holds the student's `grade` for that course (e.g., 95).
+
+By using a list of dictionaries, you can organize and represent structured data efficiently. It's a useful approach when you need to handle complex data where each item has multiple properties, like in this example where each course has a name and a grade associated with it.
+
+
