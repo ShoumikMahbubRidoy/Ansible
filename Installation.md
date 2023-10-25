@@ -30,7 +30,7 @@ pip install ansible          # Install Ansible using pip
 ```
 
 ## 4. Windows 10 & 11:
--Ansible is primarily designed for Unix-like systems, so it doesn't run natively on Windows. However, you can use Windows Subsystem for Linux (WSL) to run Ansible on your Windows machine.
+-  Ansible is primarily designed for Unix-like systems, so it doesn't run natively on Windows. However, you can use Windows Subsystem for Linux (WSL) to run Ansible on your Windows machine.
 -- Install WSL: Follow the official instructions to install WSL: [Install WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install).
 -- Choose your preferred Linux distribution (e.g., Ubuntu) and install it via the Microsoft Store.
 -- After setting up WSL, you can follow the Ubuntu installation instructions mentioned above within your WSL terminal to install Ansible.
