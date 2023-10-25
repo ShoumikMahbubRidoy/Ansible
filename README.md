@@ -104,9 +104,9 @@ In this inventory, you have two groups: "`web_servers`" and "`db_servers`" Think
 - **`db_servers:`** This group includes servers that are meant for handling database-related tasks. In this group, you have one server with the IP address 192.168.1.12.
 
 ### Why Groups Matter:
-Groups are useful because they allow you to apply configurations or tasks to a specific set of machines. For example, if you have web-related tasks to perform, you can target the "web_servers" group, and Ansible will perform those tasks on all machines in that group. It's like sorting your contacts into groups on your phone to send messages to specific sets of people.
+Groups are useful because they allow you to apply configurations or tasks to a specific set of machines. For example, if you have web-related tasks to perform, you can target the "`web_servers`" group, and Ansible will perform those tasks on all machines in that group. It's like sorting your contacts into groups on your phone to send messages to specific sets of people.
 
-**In Simple Terms:** Imagine you have a big toolbox, and inside the toolbox, you want to group your tools. You have one section for tools used for carpentry (web_servers) and another for tools used for plumbing (db_servers). The IP addresses are like the labels on the tools, so you can easily find the right tool when you need it.
+**In Simple Terms:** Imagine you have a big toolbox, and inside the toolbox, you want to group your tools. You have one section for tools used for carpentry (`web_servers`) and another for tools used for plumbing (`db_servers`). The IP addresses are like the labels on the tools, so you can easily find the right tool when you need it.
 So, the inventory file helps Ansible know which machines are part of which group, making it easier to manage and perform tasks on those machines. It's like having a well-organized toolbox for your IT tasks.
 So, Ansible makes IT tasks easier by using plain text instructions (YAML playbooks), connecting to computers remotely without needing special software, and helping manage multiple computers working together. It's like having a friendly robot to handle repetitive tasks and ensure your IT systems run smoothly.
 
@@ -114,7 +114,7 @@ So, Ansible makes IT tasks easier by using plain text instructions (YAML playboo
 
 ## What is a Hosts File in Ansible?
 
-In Ansible, the hosts file is like a contact list that tells Ansible which computers it should manage and how to connect to them. Each computer is referred to as a "host." Here's an example of a simple hosts file:
+In Ansible, the hosts file is like a contact list that tells Ansible which computers it should manage and how to connect to them. Each computer is referred to as a "host" Here's an example of a simple hosts file:
 
 ```yaml
 # File name: hosts
@@ -194,45 +194,33 @@ In this example playbook:
 To get started with Ansible's configuration management magic, follow these simple steps:
 
 1. **Create Your Playbook**: Write a playbook like the example provided. Specify the tasks you want to automate.
-
 2. **Define Your Inventory**: Update your inventory file with a list of your target computers (IP addresses or names). This is where Ansible will work its magic.
-
 3. **Run the Playbook**: Execute the playbook from your control machine. Ansible will take care of the rest, making sure all your machines are up to date and consistent.
 
 That's it! Ansible becomes your super-efficient assistant, ensuring all your computers have the same software and configurations. You provide the recipe (playbook), and Ansible handles the hard work. It's like magic for IT tasks!
 
 # How Ansible Works
-
 Think of Ansible as a smart messenger that helps you manage and control many computers at once. Here's how it works:
 
 ## Controlling Node
-
 The controlling node is your computer, the one you're using to control Ansible. Think of it as your command center.
 
 ## Inventory
-
 You create a list of all the computers you want to manage. This list is called the "inventory." It's like making a guest list for a party and deciding who to invite.
 
 ## Modules
-
 Ansible uses little programs called "modules." These modules are like tools in a toolbox. Each module does a specific job, like installing software, restarting a server, or copying files. You can think of them as magical helpers.
 
 ## Execution
-
 Ansible connects to the computers in your inventory. It's like calling your friends to join the party. Then, Ansible sends the right modules to each computer, telling them what to do. For example, it might send an "Install Web Server" module to install a web server.
 
 ## Cleaning Up
-
 Once the work is done, Ansible is polite and cleans up after itself. It removes the modules from the computers. It's like your friends leaving the party when it's over.
 
 ## Example
-
 Imagine you have ten computers in your office, and you want to update the software on all of them to the latest version. Using Ansible, you would:
-
 1. Create an inventory with the names or IP addresses of those ten computers.
-
 2. Write a playbook (like a to-do list) that tells Ansible to use the "Update Software" module on all the computers.
-
 3. Run the playbook from your computer.
 
 <img src="./Ansible.PNG" />
