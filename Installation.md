@@ -40,8 +40,7 @@ Ansible is primarily designed for Unix-like systems, so it doesn't run natively 
 Kali Linux is based on Debian, so you can use the apt package manager to install Ansible, just like you would on Ubuntu.
 Open a terminal and run these commands:
 **Copy code**
-```
-bash
+```bash
 sudo apt update               # Update the package list
 sudo apt install ansible      # Install Ansible
 ```
