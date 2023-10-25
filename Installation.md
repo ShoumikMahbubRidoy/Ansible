@@ -1,7 +1,22 @@
 # Installation Process
 Let's break down the installation process of Ansible for different operating systems, including CentOS, macOS, Windows 10 & 11, Ubuntu, Kali, and RedHat Enterprise. We'll keep it simple and beginner-friendly.
 
-## 1. CentOS and RedHat Enterprise:
+## 1. Using pip (Python package manager, works on various systems):
+- Open a terminal.
+- First, install Python (if not already installed): **Copy code**
+```bash
+# On Debian/Ubuntu
+sudo apt update
+sudo apt install python3
+
+# On CentOS/RedHat
+sudo yum install python3
+```
+Then, install Ansible using pip: **Copy code**
+```bash
+pip install ansible
+```
+## 2. CentOS and RedHat Enterprise:
 On CentOS and RedHat, you can install Ansible using the yum package manager.
 Open a terminal and run these commands:
 **Copy code**
@@ -9,7 +24,7 @@ Open a terminal and run these commands:
 sudo yum install epel-release  # Install the EPEL repository (extra packages)
 sudo yum install ansible       # Install Ansible
 ```
-## 2. Ubuntu:
+## 3. Ubuntu:
 On Ubuntu, you can use the apt package manager to install Ansible.
 
 Open a terminal and run these commands:
@@ -19,7 +34,7 @@ sudo apt update               # Update the package list
 sudo apt install ansible      # Install Ansible
 ```
 
-## 3. macOS:
+## 4. macOS:
 On macOS, you can use pip, a Python package manager, to install Ansible. First, ensure you have Python installed.
 Open a terminal and run these commands:
 **Copy code**
@@ -30,13 +45,13 @@ pip install ansible                                                             
 brew install ansible                                                                               # Install Ansible using Homebrew
 ```
 
-## 4. Windows 10 & 11:
+## 5. Windows 10 & 11:
 Ansible is primarily designed for Unix-like systems, so it doesn't run natively on Windows. However, you can use Windows Subsystem for Linux (WSL) to run Ansible on your Windows machine.
 - Install WSL: Follow the official instructions to install WSL: [Install WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install).
 - Choose your preferred Linux distribution (e.g., Ubuntu) and install it via the Microsoft Store.
 - After setting up WSL, you can follow the Ubuntu installation instructions mentioned above within your WSL terminal to install Ansible.
 
-## 5. Kali Linux:
+## 6. Kali Linux:
 Kali Linux is based on Debian, so you can use the apt package manager to install Ansible, just like you would on Ubuntu.
 Open a terminal and run these commands:
 **Copy code**
