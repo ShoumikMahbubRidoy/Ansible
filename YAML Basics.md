@@ -70,10 +70,10 @@ courses:
 - `courses` is the key, and it's followed by a colon and space.
     - After the courses key, the colon and space are used to indicate that what follows is a value associated with the key. In YAML, the colon (:) and space are used to separate keys from their corresponding values in key-value pairs.
 
-      In this case:
+      - In this case:
         - `courses` is the key, indicating that you are about to specify the student's courses.
         - The colon and space, `:`, immediately following `courses`, indicate that the value associated with the key is a list of courses. In YAML, the colon-space combination is used to define this association between keys and their values.
-      So, the structure `courses`: tells you that the key "courses" is associated with a list of courses, and the list itself is defined using the hyphen (`-`) and space for each course item. This structure helps organize and       represent data in a clear and human-readable way in YAML.
+      - So, the structure `courses`: tells you that the key "courses" is associated with a list of courses, and the list itself is defined using the hyphen (`-`) and space for each course item. This structure helps organize and       represent data in a clear and human-readable way in YAML.
 - Underneath the courses key, you see a list of courses.
 - Each course in the list is represented by a hyphen (-) followed by a space. This indicates the start of a new item in the list.
 - The courses, like "Math," "History," and "Computer Science," are each listed on a new line with the same level of indentation.
