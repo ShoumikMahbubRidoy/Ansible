@@ -99,7 +99,7 @@ db_servers:
 In this inventory, we have two groups: "`web_servers`" and "`db_servers`" and each group has the IP addresses of the computers.
 
 ### Groups:
-In this inventory, you have two groups: "web_servers" and "db_servers." Think of groups as categories for your machines. You can put machines with similar roles or functions in the same group.
+In this inventory, you have two groups: "`web_servers`" and "`db_servers`" Think of groups as categories for your machines. You can put machines with similar roles or functions in the same group.
 - **`web_servers:`** This group includes servers that are meant for handling web-related tasks, like hosting a website. In this group, you have two servers with the IP addresses 192.168.1.10 and 192.168.1.11.
 - **`db_servers:`** This group includes servers that are meant for handling database-related tasks. In this group, you have one server with the IP address 192.168.1.12.
 
