@@ -92,7 +92,7 @@ In summary, ad-hoc commands are for quick, one-off tasks, while Ansible playbook
 
 ## Parallelism:
 
-Parallelism in Ansible allows you to execute tasks on multiple servers simultaneously. This can speed up operations, especially when you need to perform actions like rebooting multiple servers. In your example, you want to reboot servers in the "abc" group using 12 parallel forks, which means you'll reboot up to 12 servers at a time.
+Parallelism in Ansible allows you to execute tasks on multiple servers simultaneously. This can speed up operations, especially when you need to perform actions like rebooting multiple servers. In this example, we want to reboot servers in the "abc" group using 12 parallel forks, which means you'll reboot up to 12 servers at a time.
 
 ## SSH Agent and Authentication:
 
