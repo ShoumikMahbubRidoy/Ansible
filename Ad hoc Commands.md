@@ -104,10 +104,9 @@ Before running Ansible commands, you should ensure that your SSH agent is set up
    ```
 
 2. Add your SSH key to the agent:
-
-  ```shell
-  ssh-add ~/.ssh/id_rsa
-  ```
+   ```shell
+   ssh-add ~/.ssh/id_rsa
+   ```
 Now, you're ready to run Ansible commands with SSH authentication.
 
 **Running Ad-hoc Reboot Commands:**
