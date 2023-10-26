@@ -106,8 +106,6 @@ Before running Ansible commands, you should ensure that your SSH agent is set up
    ```shell
    ssh-add ~/.ssh/id_rsa
    ```
-
-
 Now, you're ready to run Ansible commands with SSH authentication.
 
 **Running Ad-hoc Reboot Commands:**
@@ -115,3 +113,19 @@ To reboot servers in the "abc" group using 12 parallel forks, you can use the fo
 ```shell
 ansible abc -a "/sbin/reboot" -f 12
 ```
+**Here's a breakdown of the command:**
+- `ansible`: This is the Ansible command.
+- `abc`: It specifies that you want to target the servers in the "abc" group from your Ansible inventory.
+- `-a "/sbin/reboot"`: This is the actual command you want to run, which is "/sbin/reboot." It will initiate a server reboot.
+- `-f 12`: This flag specifies that you want to run the reboot command on up to 12 servers in parallel.
+
+By running this command, Ansible will log in to the servers in the "abc" group and execute the "/sbin/reboot" command on up to 12 servers at a time.
+
+**Changing the Username:**
+By default, Ansible will use your current user account for SSH authentication. If you want to specify a different username, you can do so using the `-u` option. For example, if your username is "username," you can use the following command:
+```shell
+ansible abc -a "/sbin/reboot" -f 12 -u username
+```
+This will ensure that Ansible uses the "username" for SSH authentication when connecting to the servers in the "abc" group.
+
+In summary, parallelism allows you to perform tasks on multiple servers simultaneously, and setting up the SSH agent and specifying the username are essential for secure and efficient server management with Ansible ad-hoc commands.
