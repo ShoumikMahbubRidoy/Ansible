@@ -198,3 +198,59 @@ ansible abc -m yum -a "name=demo-tomcat-1 state=latest"
 - `-a "name=demo-tomcat-1 state=latest"`: Here, you specify the package name as "demo-tomcat-1" and set the state to "latest," which means you want to ensure that the latest version of the package is installed.
 
 These ad-hoc commands allow you to manage packages using `yum` on multiple servers easily. They are useful for checking the status of packages, ensuring the presence or absence of packages, and updating packages to their latest versions, making software management more efficient.
+
+## Gathering System Facts:
+
+Ansible can collect various pieces of information about the remote servers, such as operating system details, hardware information, network configuration, and more. This information is called "facts." Gathering facts is useful for implementing conditional statements in your playbooks or for understanding the state of your remote servers.
+
+To gather facts about all your servers, you can use the following Ansible ad-hoc command:
+```shell
+ansible all -m setup
+```
+- `ansible`: This is the Ansible command.
+- `all`: It specifies that you want to target all servers defined in your inventory.
+- `-m setup`: This indicates that you want to use the "setup" module, which is designed to gather system facts.
+
+**Example:**
+
+Suppose you have a group of servers in your inventory, and you want to gather facts about them. Here's how you can do it with the Ansible ad-hoc command:
+```shell
+ansible all -m setup
+```
+When you run this command, Ansible will connect to each server in your inventory and collect a wide range of facts about each system. These facts can include information about the server's hardware, operating system, network configuration, and more. Ansible will then display this information on your screen.
+
+Here's a simplified example of the kind of information you might receive:
+```json
+{
+    "ansible_facts": {
+        "ansible_distribution": "Ubuntu",
+        "ansible_os_family": "Debian",
+        "ansible_processor": "x86_64",
+        "ansible_kernel": "4.19.104",
+        "ansible_hostname": "server1",
+        "ansible_default_ipv4": {
+            "address": "192.168.1.100",
+            "interface": "eth0"
+        },
+        "ansible_default_ipv6": {
+            "address": "fe80::abcd:1234",
+            "interface": "eth0"
+        },
+        // ... more facts
+    }
+}
+```
+This JSON represents a set of facts about a server. Let's go through each part step by step:
+- `"ansible_facts"`: This is the root key of the JSON object and indicates that the data inside it contains Ansible facts.
+- `"ansible_distribution"`: This fact provides information about the Linux distribution running on the server. In this example, the server is running Ubuntu.
+- `"ansible_os_family"`: This fact provides information about the family of the operating system. In this case, it's "Debian," which is the family to which Ubuntu belongs.
+- `"ansible_processor"`: This fact tells you about the CPU architecture of the server. Here, it's "x86_64," indicating a 64-bit processor.
+- `"ansible_kernel"`: This fact specifies the kernel version of the operating system. The kernel is a critical part of the operating system. Here, it's version "4.19.104."
+- `"ansible_hostname"`: This fact provides the hostname of the server. In this case, the server's hostname is "server1."
+- `"ansible_default_ipv4"`: This part of the facts provides information about the default IPv4 address and associated network interface on the server. The address is "192.168.1.100," and the interface is "eth0."
+- `"ansible_default_ipv6"`: Similar to the IPv4 fact, this provides information about the default IPv6 address and associated network interface. The IPv6 address is "fe80::abcd:1234," and the interface is "eth0."
+  These are just a few of the many facts that Ansible can collect. You can use these facts in your Ansible playbooks to make decisions and perform specific tasks based on the characteristics of the target server. For instance, you could use `"ansible_distribution"` to install distribution-specific packages or `"ansible_default_ipv4"` to configure network settings. Facts provide valuable information that helps you automate server management effectively.
+
+You can use these facts in your playbooks to make decisions based on the characteristics of your servers. For example, you might use facts like the operating system to install specific software packages or use facts about the server's IP address for network configuration.
+
+In summary, gathering facts using Ansible is a valuable feature that provides you with detailed information about your servers, which you can then use to make informed decisions in your automation tasks.
