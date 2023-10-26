@@ -197,4 +197,4 @@ ansible abc -m yum -a "name=demo-tomcat-1 state=latest"
 - `-m yum`: Using the yum module for package management.
 - `-a "name=demo-tomcat-1 state=latest"`: Here, you specify the package name as "demo-tomcat-1" and set the state to "latest," which means you want to ensure that the latest version of the package is installed.
 
-  These ad-hoc commands allow you to manage packages using `yum` on multiple servers easily. They are useful for checking the status of packages, ensuring the presence or absence of packages, and updating packages to their latest versions, making software management more efficient.
+These ad-hoc commands allow you to manage packages using `yum` on multiple servers easily. They are useful for checking the status of packages, ensuring the presence or absence of packages, and updating packages to their latest versions, making software management more efficient.
