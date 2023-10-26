@@ -140,7 +140,7 @@ ansible abc -m copy -a "src=/path/to/local/file dest=/tmp/remote-file"
 - `abc`: It specifies that you want to target the servers in the "abc" group from your Ansible inventory.
 - `-m copy`: This indicates that you want to use the "copy" module for file transfer.
 - `-a "src=/path/to/local/file dest=/tmp/remote-file"`: This is where you specify the source and destination of the file you want to copy. It will copy the file from your local machine to `/tmp/remote-file` on each server in the "abc" group.
-### Creating a New Directory:
+## Creating a New Directory:
 
 You can use Ansible ad-hoc commands to create directories on multiple servers. In this example, we'll create a new directory with specific permissions and ownership:
 ```shell
@@ -151,7 +151,7 @@ ansible abc -m file -a "dest=/path/user1/new mode=777 owner=user1 group=user1 st
 - `-m file`: Using the "file" module for file system operations.
 - `-a "dest=/path/user1/new mode=777 owner=user1 group=user1 state=directory"`: Here, you specify the destination path for the new directory, set its permissions to 777, and define the owner and group as "user1." The `state=directory` option indicates that you want to create a directory.
 
-### Deleting a Directory and Files:
+## Deleting a Directory and Files:
 
 You can also use Ansible ad-hoc commands to delete directories and their contents on multiple servers. In this example, we'll delete a directory and its files:
 ```shell
