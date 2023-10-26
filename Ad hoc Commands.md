@@ -130,7 +130,8 @@ This will ensure that Ansible uses the "username" for SSH authentication when co
 
 In summary, parallelism allows you to perform tasks on multiple servers simultaneously, and setting up the SSH agent and specifying the username are essential for secure and efficient server management with Ansible ad-hoc commands.
 
-## Transferring Files:
+## File/Folder/Directory Management
+### Transferring Files:
 
 You can use Ansible ad-hoc commands to securely copy files to multiple servers in parallel. Explaining how to use Ansible ad-hoc commands for file transfer, creating directories, and deleting files and directories with examples for a beginner. In this example, we'll transfer a file from your local machine to multiple servers in the "abc" group:
 ```shell
@@ -140,7 +141,7 @@ ansible abc -m copy -a "src=/path/to/local/file dest=/tmp/remote-file"
 - `abc`: It specifies that you want to target the servers in the "abc" group from your Ansible inventory.
 - `-m copy`: This indicates that you want to use the "copy" module for file transfer.
 - `-a "src=/path/to/local/file dest=/tmp/remote-file"`: This is where you specify the source and destination of the file you want to copy. It will copy the file from your local machine to `/tmp/remote-file` on each server in the "abc" group.
-## Creating a New Directory:
+### Creating a New Directory:
 
 You can use Ansible ad-hoc commands to create directories on multiple servers. In this example, we'll create a new directory with specific permissions and ownership:
 ```shell
@@ -151,7 +152,7 @@ ansible abc -m file -a "dest=/path/user1/new mode=777 owner=user1 group=user1 st
 - `-m file`: Using the "file" module for file system operations.
 - `-a "dest=/path/user1/new mode=777 owner=user1 group=user1 state=directory"`: Here, you specify the destination path for the new directory, set its permissions to 777, and define the owner and group as "user1." The `state=directory` option indicates that you want to create a directory.
 
-## Deleting a Directory and Files:
+### Deleting a Directory and Files:
 
 You can also use Ansible ad-hoc commands to delete directories and their contents on multiple servers. In this example, we'll delete a directory and its files:
 ```shell
