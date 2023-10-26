@@ -128,28 +128,27 @@ By using a list of dictionaries, you can organize and represent structured data 
 YAML provides two ways to control the formatting of multiple lines: using the `|` character to include newlines and `>` to suppress newlines. Additionally, YAML allows you to represent boolean (true/false) values, and it's generally case-insensitive. Let's illustrate these concepts with a student's information.
 
 1. **Using `|` to Include Newlines:**
-
-  The `|` character allows you to include newlines, making it useful for preserving line breaks, especially when you have long text. Here's an example:
-  ```yaml
-  student:
-    name: John Doe
-    age: 20
-    major: Computer Science
-    description: |
-      John Doe is a dedicated student.
-      He is passionate about learning
-      and excels in his coursework.
-  ```
+    The `|` character allows you to include newlines, making it useful for preserving line breaks, especially when you have long text. Here's an example:
+    ```yaml
+    student:
+      name: John Doe
+      age: 20
+      major: Computer Science
+      description: |
+        John Doe is a dedicated student.
+        He is passionate about learning
+        and excels in his coursework.
+    ```
   In this example, the `description` field includes multiple lines of text. The `|` character preserves the line breaks, allowing you to maintain the formatting of the description.
 
 2. **Using `>` to Suppress Newlines:**
-  The `>` character, on the other hand, is used to suppress newlines, making it helpful when you want to represent multiple lines of text as a single paragraph:
-  ```yaml
-  student:
-    name: John Doe
-    age: 20
-    major: Computer Science
-    notes: >
-    John Doe is a dedicated student. He is passionate about learning and excels in his coursework.
-  ```  
-  In this case, the notes field combines the text into a single paragraph, even though it spans multiple lines.
+    The `>` character, on the other hand, is used to suppress newlines, making it helpful when you want to represent multiple lines of text as a single paragraph:
+    ```yaml
+    student:
+      name: John Doe
+      age: 20
+      major: Computer Science
+      notes: >
+      John Doe is a dedicated student. He is passionate about learning and excels in his coursework.
+    ```  
+    In this case, the notes field combines the text into a single paragraph, even though it spans multiple lines.
