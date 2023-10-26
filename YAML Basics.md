@@ -3,6 +3,7 @@ YAML (YAML Ain't Markup Language) is a human-readable data serialization format 
 
 ## Key-value pair
 In YAML, you create data structures using key-value pairs, and indentation is crucial to represent the structure. Here's a simple example of a student record in YAML:
+**Copy code**
 ```yaml
 student:
   name: John Doe
@@ -23,6 +24,7 @@ Let's break this down:
 6. The student's details are represented as nested key-value pairs, indented with spaces. For example, `name: John Doe` indicates the student's name is "John Doe."
 7. The grades field is also a dictionary, but it has a list of subjects and scores. This is represented using a hyphen - followed by a space for each item in the list. For example, `- subject: Math` indicates the subject is "Math," and the student's score is 95.
    - In YAML, the hyphen (`-`) is used to indicate the beginning of a list or sequence. It represents individual elements in a list or an array. In the example you provided:
+     **Copy code**
     ```yaml
     grades:
       - subject: Math
@@ -45,6 +47,7 @@ Remember that in YAML, spaces and indentation are critical for defining the stru
 In YAML, you can use an abbreviation to represent dictionaries, which are collections of key-value pairs. This abbreviation makes it even simpler to define data structures. Let's illustrate this concept with a beginner-friendly example.
 
 Instead of explicitly stating "key: value" for each pair, you can use an abbreviation by listing the key and its associated value directly without a colon. Here's an example of a student record using this abbreviation:
+**Copy code**
 ```yaml
 student: John Doe, 20, Computer Science
 ```
@@ -56,6 +59,7 @@ Abbreviations can make your YAML files more compact and easier to read when deal
 
 ## Representing List
 In YAML, you can create lists by using the hyphen (-) followed by a space, and each element of the list is written in a new line. Here's an example of a student's course list in YAML:
+**Copy code**
 ```yaml
 courses:
   - Math
@@ -121,4 +125,31 @@ student:
 
 By using a list of dictionaries, you can organize and represent structured data efficiently. It's a useful approach when you need to handle complex data where each item has multiple properties, like in this example where each course has a name and a grade associated with it.
 
+YAML provides two ways to control the formatting of multiple lines: using the `|` character to include newlines and `>` to suppress newlines. Additionally, YAML allows you to represent boolean (true/false) values, and it's generally case-insensitive. Let's illustrate these concepts with a student's information.
 
+1. **Using `|` to Include Newlines:**
+
+  The `|` character allows you to include newlines, making it useful for preserving line breaks, especially when you have long text. Here's an example:
+  ```yaml
+  student:
+    name: John Doe
+    age: 20
+    major: Computer Science
+    description: |
+      John Doe is a dedicated student.
+      He is passionate about learning
+      and excels in his coursework.
+  ```
+  In this example, the `description` field includes multiple lines of text. The `|` character preserves the line breaks, allowing you to maintain the formatting of the description.
+
+2. **Using `>` to Suppress Newlines:**
+  The `>` character, on the other hand, is used to suppress newlines, making it helpful when you want to represent multiple lines of text as a single paragraph:
+  ```yaml
+  student:
+    name: John Doe
+    age: 20
+    major: Computer Science
+    notes: >
+    John Doe is a dedicated student. He is passionate about learning and excels in his coursework.
+  ```  
+  In this case, the notes field combines the text into a single paragraph, even though it spans multiple lines.
