@@ -189,20 +189,20 @@ student:
 ```
 1. ### Key-Value Pairs:
 
-  - `student` is the main key or dictionary, representing the student's information.
-  - `name`, `age`, and `major` are keys that store specific pieces of information about the student.
+    - `student` is the main key or dictionary, representing the student's information.
+    - `name`, `age`, and `major` are keys that store specific pieces of information about the student.
     
 2. ### Lists:
 
-  - `courses` and `activities` are keys with associated lists of courses and extracurricular activities, respectively.
+    - `courses` and `activities` are keys with associated lists of courses and extracurricular activities, respectively.
 
 3. ### Text Representation with `|` and `>`:
 
-  - `description` uses the `|` character to represent a multi-line text block. It preserves newlines, making it suitable for longer descriptions.
-  - `notes` uses the `>` character to represent a multi-line text block as a single paragraph, suitable for compact notes.
+    - `description` uses the `|` character to represent a multi-line text block. It preserves newlines, making it suitable for longer descriptions.
+    - `notes` uses the `>` character to represent a multi-line text block as a single paragraph, suitable for compact notes.
 
 4. ### Boolean Values:
 
-  - `is_undergrad` and `is_graduate` are keys that store boolean values. `is_undergrad` is set to `true`, indicating that the student is an undergraduate, and `is_graduate` is set to `False`, indicating the student is not a graduate.
+    - `is_undergrad` and `is_graduate` are keys that store boolean values. `is_undergrad` is set to `true`, indicating that the student is an undergraduate, and `is_graduate` is set to `False`, indicating the student is not a graduate.
 
 In summary, the code represents a student's information with their name, age, major, a list of courses, a list of extracurricular activities, a multi-line description, compact notes, and boolean values to indicate their academic status. YAML provides a flexible and human-readable way to structure and represent data.
