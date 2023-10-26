@@ -163,3 +163,38 @@ ansible abc -m file -a "dest=/path/user1/new state=absent"
 - `-m file`: Using the "file" module for file system operations.
 - `-a "dest=/path/user1/new state=absent"`: Here, you specify the destination path for the directory you want to delete, and `state=absent` indicates that you want to remove the directory and its contents.
 
+## Package Managemnt
+### Checking if a Yum Package is Installed:
+
+You can use Ansible ad-hoc commands to check if a package is installed on multiple servers without updating it. In this example, we'll check if the package named "demo-tomcat-1" is installed on servers in the "abc" group:
+```shell
+ansible abc -m yum -a "name=demo-tomcat-1 state=present"
+```
+- `ansible`: This is the Ansible command.
+- `abc`: It specifies that you want to target the servers in the "abc" group from your Ansible inventory.
+- `-m yum`: This indicates that you want to use the yum module for package management.
+- `-a "name=demo-tomcat-1 state=present"`: Here, you specify the package name as "demo-tomcat-1" and set the state to "present," which means you want to check if the package is installed.
+
+### Checking if a Yum Package is Not Installed:
+
+You can also use Ansible ad-hoc commands to check if a package is not installed on multiple servers. In this example, we'll check if the package named "demo-tomcat-1" is not installed on servers in the "abc" group:
+```shell
+ansible abc -m yum -a "name=demo-tomcat-1 state=absent"
+```
+- `ansible`: The Ansible command.
+- `abc`: Targeting the "abc" group of servers.
+- `-m yum`: Using the yum module for package management.
+- `-a "name=demo-tomcat-1 state=absent"`: Here, you specify the package name as "demo-tomcat-1" and set the state to "absent," which means you want to check if the package is not installed.
+
+### Checking for the Latest Version of a Yum Package:
+
+You can also use Ansible ad-hoc commands to ensure that the latest version of a package is installed on multiple servers. In this example, we'll check if the latest version of the package named "demo-tomcat-1" is installed on servers in the "abc" group:
+```shell
+ansible abc -m yum -a "name=demo-tomcat-1 state=latest"
+```
+- `ansible`: The Ansible command.
+- `abc`: Targeting the "abc" group of servers.
+- `-m yum`: Using the yum module for package management.
+- `-a "name=demo-tomcat-1 state=latest"`: Here, you specify the package name as "demo-tomcat-1" and set the state to "latest," which means you want to ensure that the latest version of the package is installed.
+
+  These ad-hoc commands allow you to manage packages using `yum` on multiple servers easily. They are useful for checking the status of packages, ensuring the presence or absence of packages, and updating packages to their latest versions, making software management more efficient.
