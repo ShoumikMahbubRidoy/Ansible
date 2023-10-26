@@ -48,7 +48,7 @@ This README provides an explanation of an Ansible playbook using YAML, with deta
 
 The `---` at the beginning of the file is a YAML document separator, indicating the start of a new YAML document.
 
-## #List of Plays
+## List of Plays
 
 A play in Ansible is a section of tasks that are run on a specific set of hosts. In this playbook, there is a single play, which is represented by a list (a sequence in YAML).
 
