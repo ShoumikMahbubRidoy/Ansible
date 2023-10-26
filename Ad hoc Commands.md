@@ -89,3 +89,27 @@ ansible-playbook -i inventory_file webserver_playbook.yml
 This command tells Ansible to execute the tasks defined in the playbook on the servers specified in the inventory.
 
 In summary, ad-hoc commands are for quick, one-off tasks, while Ansible playbooks are used for more complex and automated tasks that you can run repeatedly. Playbooks are especially useful for configuration management and deployment, where you need consistency and repeatability in your server management tasks.
+
+## Parallelism:
+
+Parallelism in Ansible allows you to execute tasks on multiple servers simultaneously. This can speed up operations, especially when you need to perform actions like rebooting multiple servers. In your example, you want to reboot servers in the "abc" group using 12 parallel forks, which means you'll reboot up to 12 servers at a time.
+
+## SSH Agent and Authentication:
+
+Before running Ansible commands, you should ensure that your SSH agent is set up and your SSH key is added for authentication. The SSH agent is a program that manages your SSH keys securely, so you don't have to type your SSH passphrase repeatedly. Here's how you set it up:
+
+1. Start an SSH agent and open a new shell session:
+   ```shell
+  ssh-agent bash
+  ```
+2. Add your SSH key to the agent:
+  ```shell
+  ssh-add ~/.ssh/id_rsa
+  ```
+Now, you're ready to run Ansible commands with SSH authentication.
+
+**Running Ad-hoc Reboot Commands:**
+To reboot servers in the "abc" group using 12 parallel forks, you can use the following Ansible ad-hoc command:
+```shell
+ansible abc -a "/sbin/reboot" -f 12
+```
