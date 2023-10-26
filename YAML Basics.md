@@ -152,3 +152,12 @@ YAML provides two ways to control the formatting of multiple lines: using the `|
       John Doe is a dedicated student. He is passionate about learning and excels in his coursework.
     ```  
     In this case, the `notes` field combines the text into a single paragraph, even though it spans multiple lines.
+3. **Boolean Values:**
+    YAML allows you to represent boolean values, and it's generally case-insensitive. For example:
+    ```yaml
+    student:
+      name: John Doe
+      is_undergrad: true
+      is_graduate: False
+    In this example, the `is_undergrad` key has a boolean value of `true`, and the `is_graduate` key has a boolean value of `False`. YAML is flexible in its interpretation of boolean values, so you can use `true`, `false`, `True`, `False`, `TRUE`, `FALSE`, or even `TrUe`, and `fAlSe`, etc. YAML parsers will typically recognize these as boolean values regardless of their capitalization.
+
