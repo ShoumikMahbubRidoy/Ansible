@@ -163,7 +163,7 @@ ansible abc -m file -a "dest=/path/user1/new state=absent"
 - `-m file`: Using the "file" module for file system operations.
 - `-a "dest=/path/user1/new state=absent"`: Here, you specify the destination path for the directory you want to delete, and `state=absent` indicates that you want to remove the directory and its contents.
 
-## Package Managemnt
+## Package Management
 ### Checking if a Yum Package is Installed:
 
 You can use Ansible ad-hoc commands to check if a package is installed on multiple servers without updating it. In this example, we'll check if the package named "demo-tomcat-1" is installed on servers in the "abc" group:
