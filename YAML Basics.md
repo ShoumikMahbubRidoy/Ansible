@@ -151,4 +151,4 @@ YAML provides two ways to control the formatting of multiple lines: using the `|
       notes: >
       John Doe is a dedicated student. He is passionate about learning and excels in his coursework.
     ```  
-    In this case, the notes field combines the text into a single paragraph, even though it spans multiple lines.
+    In this case, the `notes` field combines the text into a single paragraph, even though it spans multiple lines.
