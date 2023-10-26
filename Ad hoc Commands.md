@@ -248,7 +248,7 @@ This JSON represents a set of facts about a server. Let's go through each part s
 - `"ansible_kernel"`: This fact specifies the kernel version of the operating system. The kernel is a critical part of the operating system. Here, it's version "4.19.104."
 - `"ansible_hostname"`: This fact provides the hostname of the server. In this case, the server's hostname is "server1."
 - `"ansible_default_ipv4"`: This part of the facts provides information about the default IPv4 address and associated network interface on the server. The address is "192.168.1.100," and the interface is "eth0."
-- `"ansible_default_ipv6"`: Similar to the IPv4 fact, this provides information about the default IPv6 address and associated network interface. The IPv6 address is "fe80::abcd:1234," and the interface is "eth0."
+- `"ansible_default_ipv6"`: Similar to the IPv4 fact, this provides information about the default IPv6 address and associated network interface. The IPv6 address is "fe80: :abcd:1234," and the interface is "eth0."
   These are just a few of the many facts that Ansible can collect. You can use these facts in your Ansible playbooks to make decisions and perform specific tasks based on the characteristics of the target server. For instance, you could use `"ansible_distribution"` to install distribution-specific packages or `"ansible_default_ipv4"` to configure network settings. Facts provide valuable information that helps you automate server management effectively.
 
 You can use these facts in your playbooks to make decisions based on the characteristics of your servers. For example, you might use facts like the operating system to install specific software packages or use facts about the server's IP address for network configuration.
