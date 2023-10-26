@@ -139,7 +139,7 @@ YAML provides two ways to control the formatting of multiple lines: using the `|
         He is passionate about learning
         and excels in his coursework.
     ```
-  In this example, the `description` field includes multiple lines of text. The `|` character preserves the line breaks, allowing you to maintain the formatting of the description.
+    In this example, the `description` field includes multiple lines of text. The `|` character preserves the line breaks, allowing you to maintain the formatting of the description.
 
 2. **Using `>` to Suppress Newlines:**
     The `>` character, on the other hand, is used to suppress newlines, making it helpful when you want to represent multiple lines of text as a single paragraph:
