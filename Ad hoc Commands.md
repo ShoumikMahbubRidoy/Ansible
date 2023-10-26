@@ -40,11 +40,47 @@ For example, if you need to install and configure a web server on multiple serve
         dest: /var/www/html
 ```
 In this example:
+## Ansible Playbook Explanation
 
-- `name`: Describes the name of the playbook.
-- `hosts`: Specifies which servers should be targeted, in this case, the group of servers labeled as "webservers" in your inventory.
-- `tasks`: Contains a list of tasks that Ansible will execute.
-Each task specifies what needs to be done, like installing Apache, starting the Apache service, and copying HTML files to the server.
+This README provides an explanation of an Ansible playbook using YAML, with detailed terminology and examples.
+
+### YAML Document Separator (---)
+
+The `---` at the beginning of the file is a YAML document separator, indicating the start of a new YAML document.
+
+## #List of Plays
+
+A play in Ansible is a section of tasks that are run on a specific set of hosts. In this playbook, there is a single play, which is represented by a list (a sequence in YAML).
+
+### Play Metadata
+
+- `name` is a key that assigns a name to the play. It's a description of what this play does.
+
+### Hosts
+
+- `hosts` is a key that specifies which hosts this play will target. In this case, it targets hosts labeled as "webservers."
+
+### Tasks List
+
+- `tasks` is a key that defines a list of tasks to be executed in this play.
+
+### Task Definitions
+
+Each task is represented as a dictionary with several key-value pairs:
+
+- `name` provides a human-readable name for the task.
+- `become` is a key with a boolean value (`yes`). It indicates that the task should run with elevated privileges (like using sudo).
+- `apt` is the module used to manage packages in Ubuntu/Debian-based systems.
+  - `name` specifies the name of the package to be installed (`apache2`).
+  - `state` specifies that the package should be in a "present" state.
+- `service` is the module used to manage services.
+  - `name` specifies the service name (`apache2`).
+  - `state` specifies that the service should be "started."
+- `copy` is the module used to copy files.
+  - `src` is the source path of the local HTML files.
+  - `dest` is the destination path on the remote host where the HTML files should be copied.
+
+This playbook, when executed, will install the Apache web server, start the Apache service, and copy HTML files to the specified directory on the target hosts labeled as "webservers." It demonstrates key-value pairs, lists, boolean values, and the modular structure of an Ansible playbook.
 
 To run this playbook, you'd use the `ansible-playbook` command:
 ```shell
