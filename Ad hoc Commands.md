@@ -40,15 +40,11 @@ For example, if you need to install and configure a web server on multiple serve
         dest: /var/www/html
 ```
 In this example:
-## Ansible Playbook Explanation
-
-This README provides an explanation of an Ansible playbook using YAML, with detailed terminology and examples.
-
 ### YAML Document Separator (---)
 
 The `---` at the beginning of the file is a YAML document separator, indicating the start of a new YAML document.
 
-## List of Plays
+### List of Plays
 
 A play in Ansible is a section of tasks that are run on a specific set of hosts. In this playbook, there is a single play, which is represented by a list (a sequence in YAML).
 
