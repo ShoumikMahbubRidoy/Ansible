@@ -100,8 +100,8 @@ Before running Ansible commands, you should ensure that your SSH agent is set up
 
 1. Start an SSH agent and open a new shell session:
    ```shell
-  ssh-agent bash
-  ```
+   ssh-agent bash
+   ```
 
 2. Add your SSH key to the agent:
 
