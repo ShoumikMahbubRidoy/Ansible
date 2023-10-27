@@ -10,47 +10,55 @@ Let's say you have a group of web servers that need to have their Apache web ser
 
 ```yaml
 ---
-- name: Start Apache Service
-  hosts: web_servers
+- name: Install and Configure DB
+  hosts: testServer
+  become: yes
+  vars:
+    oracle_db_port_value: 1521
+
   tasks:
-    - name: Ensure Apache is running
+    - name: Install the Oracle DB
+      yum: 
+        name: <code to install the DB>
+    
+    - name: Ensure the installed service is enabled and running
       service:
-        name: apache2
-        state: started
+        name: <your service name>
 ```
-Ansible is an open-source automation tool used for configuring, deploying, and automating tasks on remote servers. Playbooks are essential components of Ansible, allowing you to define the tasks you want to perform in a human-readable format using YAML.
+### Understanding an Ansible Playbook
 
-### Playbook Structure
+Let's break down an Ansible playbook step by step:
 
-A playbook consists of plays, which are sets of instructions to be executed on specific groups of hosts. Each play represents a particular task or a sequence of tasks to be carried out. Here's a breakdown of the structure:
+1. **Playbook Header (---):**
+   - This `---` at the beginning is like a separator and indicates the start of a YAML document. It's just a technical thing to let Ansible know that the YAML document begins here.
+2. **`name` (Name of the Playbook):**
+   - This line specifies the name of the Ansible playbook. It's like giving a title to your playbook, so you can easily understand what this playbook is meant for. In this case, it's about installing and configuring a database.
+3. **`hosts` (Target Hosts):**
+   - Here, you specify the list of hosts or host groups where you want to run the tasks. Think of hosts as the computers or servers you want to manage. This playbook will run on the machine named `testServer`.
+4. **`become: yes` (Privilege Escalation):**
+   - This tells Ansible that it should escalate privileges to become a superuser, typically 'root'. This is necessary when you want to install software or manage services that require superuser permissions.
+5. **`vars` (Variables):**
+   - In this section, you can define variables like `oracle_db_port_value`. Variables are like placeholders where you can store values to use later in your playbook. Here, we're storing the Oracle database port number as `1521`.
+6. **`tasks` (List of Actions):**
+   - Every playbook should contain a list of tasks to be executed. Tasks are the actions you want to perform. In this playbook, there are two tasks:
+     - **Task 1: Install the Oracle DB**: It uses the `yum` module to install the Oracle Database. You should replace `<code to install the DB>` with the actual command to install the database.
+     - **Task 2: Ensure the installed service is enabled and running**: This task uses the `service` module to ensure that a specified service is enabled and running. Replace `<your service name>` with the actual name of the service you want to manage.
 
-1. `---`: At the beginning of the playbook, we use `---` to indicate the start of a YAML document.
+**In a nutshell:**
+   - An Ansible playbook is like a to-do list for managing servers.
+   - It starts with a name, tells Ansible which servers to work on, may need superuser powers, can use variables, and lists tasks to perform.
 
-2. `- name: Start Apache Service`: This defines the start of a play. A play groups a set of tasks and is identified by a user-friendly name.
+### How This Playbook Works:
 
-3. `hosts: web_servers`: This line specifies which group of hosts this play will apply to. You can define host groups in your Ansible inventory.
+When you run this playbook with Ansible, it will perform the following actions:
+1. Connect to the `testServer` host.
+2. Execute the task "Install the Oracle DB" by running the installation command you provide.
+3. Execute the task "Ensure the installed service is enabled and running" to ensure that the specified service is running.
 
-4. `tasks:`: Within a play, the `tasks:` section lists the individual tasks to be executed.
+This example demonstrates the structure of a playbook and how it defines the tasks to be executed on a remote server, specifically installing and configuring an Oracle Database. Playbooks can be more complex and versatile, but this example gives you a starting point to understand how Playbooks work in Ansible.
 
-5. `- name: Ensure Apache is running`: This is an example of a task, each with a unique name for readability.
+This example is quite basic, but it shows the structure of an Ansible playbook. Playbooks can get more complex and powerful, but this should give you a newbie-friendly starting point for understanding how they work in Ansible.
 
-6. `service:`: The `service` module is used to manage system services.
-
-7. `name: apache2`: Here, you specify the name of the service you want to manage, in this case, the Apache web server.
-
-8. `state: started`: This indicates that you want to ensure the Apache service is started.
-
-### How This Playbook Works
-
-When you run this playbook with Ansible, it follows these steps:
-
-1. Connects to all the hosts in the `web_servers` group from your inventory.
-
-2. On each host, it executes the task "Ensure Apache is running."
-
-3. The task checks if the Apache service is already running. If not, it starts the service.
-
-This is a basic example, and playbooks can become much more complex with the addition of conditionals, loops, and more advanced features. Nevertheless, this example serves as a foundational understanding of how playbooks work in Ansible.
 
 
 # プレイブック（Ansible）
@@ -65,42 +73,53 @@ Ansibleのプレイブックは、Ansibleが実行するタスクと指示を定
 
 ```yaml
 ---
-- name: Apacheサービスを開始
-  hosts: web_servers
+- name: Install and Configure DB
+  hosts: testServer
+  become: yes
+  vars:
+    oracle_db_port_value: 1521
+
   tasks:
-    - name: Apacheが実行されていることを確認
+    - name: Install the Oracle DB
+      yum: 
+        name: <code to install the DB>
+    
+    - name: Ensure the installed service is enabled and running
       service:
-        name: apache2
-        state: started
+        name: <your service name>
 ```
-Ansibleはリモートサーバーで実行するタスクを指定するプレイブックを使用します。
+### Ansible プレイブックの理解
 
-### プレイブックの構造
-プレイブックは、特定のホストグループで実行する手順のセットであるプレイを含んでいます。各プレイは実行する特定のタスクまたはタスクの連続を表します。以下は構造の詳細です：
+Ansible プレイブックをステップバイステップで解説しましょう。
 
-1. `---`：プレイブックの冒頭では、YAMLドキュメントの開始を示すために `---` を使用します。
+1. **プレイブックヘッダ (---):**
+   - 最初の `---` は区切り線のようなもので、YAML ドキュメントの開始を示すものです。Ansible に、ここからYAML ドキュメントが始まることを知らせるためのものです。
+2. **`name` (プレイブックの名前):**
+   - この行は Ansible プレイブックの名前を指定します。プレイブックにタイトルを付けるようなもので、プレイブックの目的を簡単に理解できるようにします。この場合、データベースのインストールと設定に関するものです。
+3. **`hosts` (対象ホスト):**
+   - ここでは、タスクを実行するホストまたはホストグループのリストを指定します。ホストは、管理したいコンピュータやサーバーと考えてください。このプレイブックは `testServer` という名前のマシンで実行されます。
+4. **`become: yes` (権限昇格):**
+   - これは Ansible に、通常 'root' と呼ばれるスーパーユーザーに昇格するように指示するものです。これは、ソフトウェアをインストールしたり、スーパーユーザー権限が必要なサービスを管理したりする場合に必要です。
+5. **`vars` (変数):**
+   - このセクションでは、`oracle_db_port_value` のような変数を定義できます。変数は、後で使用する値を格納する場所のようなものです。ここでは Oracle データベースのポート番号を `1521` として保存しています。
+6. **`tasks` (アクションのリスト):**
+   - すべてのプレイブックには実行するタスクのリストを含める必要があります。タスクは実行したいアクションです。このプレイブックには2つのタスクがあります：
+     - **タスク 1: Oracle データベースのインストール**: Oracle データベースをインストールするために `yum` モジュールを使用します。`<code to install the DB>` を実際のデータベースのインストールコマンドに置き換える必要があります。
+     - **タスク 2: インストール済みのサービスが有効かつ実行中であることを確認**: このタスクは `service` モジュールを使用して、指定したサービスが有効かつ実行中であることを確認します。`<your service name>` を実際に管理したいサービスの名前に置き換えてください。
 
-2. `- name: Apacheサービスを開始`：これはプレイの開始を定義します。プレイはタスクのセットをまとめ、ユーザーフレンドリーな名前で識別されます。
+**要約:**
+   - Ansible プレイブックは、サーバーを管理するためのタスクリストのようなものです。
+   - プレイブックは名前で始まり、Ansible にどのサーバーで作業するかを指示し、スーパーユーザーの権限が必要かもしれず、変数を使用できるようにし、実行するタスクのリストを含みます。
 
-3. `hosts: web_servers`：この行は、このプレイを適用するホストのグループを指定します。Ansibleのインベントリでホストグループを定義できます。
+この例はかなり基本的なものですが、Ansible プレイブックの構造を示しています。プレイブックはさらに複雑でパワフルになることがありますが、これはAnsible での動作を理解する初心者向けのスタートポイントとなるでしょう。
 
-4. `tasks:`：プレイ内で、`tasks:` セクションに実行する個々のタスクをリストアップします。
-
-5. `- name: Apacheが実行されていることを確認`：これはタスクの例で、可読性のために一意の名前が付けられています。
-
-6. `service:`：`service`モジュールはシステムサービスを管理するために使用されます。
-
-7. `name: apache2`：ここで、管理するサービスの名前を指定します。この場合、Apacheウェブサーバーです。
-
-8. `state: started`：これはApacheサービスが起動していることを確認することを示します。
 
 ### このプレイブックの動作方法
+
 このプレイブックをAnsibleで実行すると、以下の手順に従います：
-
-1. インベントリから`web_servers`グループ内のすべてのホストに接続します。
-
-2. 各ホストで「Apacheが実行されていることを確認」というタスクを実行します。
-
-3. タスクはApacheサービスが既に実行されているかどうかを確認します。そうでない場合、サービスを起動します。
+1. `testServer` ホストに接続します。
+2. インストールコマンドを実行することで「Install the Oracle DB」タスクを実行します。
+3. 指定したサービスが実行中であることを確認するために「Ensure the installed service is enabled and running」タスクを実行します。
+この例では、プレイブックの構造と、リモートサーバーに対して特定の作業を定義する方法が示されています。プレイブックはより複雑で多様なものになる可能性がありますが、この例はAnsibleでのプレイブックの動作を理解する出発点となるでしょう。
 
 これは基本的な例ですが、条件文、ループ、およびより高度な機能の追加により、プレイブックは複雑になることができます。それにもかかわらず、この例はAnsibleでのプレイブックの動作原理を理解する初心者にとって良い出発点となります。
