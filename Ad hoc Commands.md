@@ -90,10 +90,10 @@ Ansibleのプレイは、特定のホストセットに対して実行される�
 Each task is represented as a dictionary with several key-value pairs:
 各タスクは、いくつかのキーと値のペアを持つ辞書として表現されます：
 
-- `name` provides a human-readable name for the task.
+- `name` provides a human-readable name for the task. 
 `name`はタスクに対して人が読みやすい名前を提供します。
-- `become` is a key with a boolean value (`yes`). It indicates that the task should run with elevated privileges (like using sudo).
- `become`はブール値(`yes`)を持つキーで、タスクがスーパーユーザー権限（sudoの使用など）で実行されるべきことを示します。
+- `become` is a key with a boolean value (`yes`). It indicates that the task should run with elevated privileges (like using sudo). 
+`become`はブール値(`yes`)を持つキーで、タスクがスーパーユーザー権限（sudoの使用など）で実行されるべきことを示します。
 - `apt` is the module used to manage packages in Ubuntu/Debian-based systems.
 `apt`はUbuntu / Debianベースのシステムでパッケージを管理するためのモジュールです。
   - `name` specifies the name of the package to be installed (`apache2`).
