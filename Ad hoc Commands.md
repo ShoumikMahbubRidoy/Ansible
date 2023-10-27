@@ -402,7 +402,8 @@ ansible abc -m copy -a "src=/path/to/local/file dest=/tmp/remote-file"
 Ansibleのアドホックコマンドを使用して、複数のサーバー上にディレクトリを作成することもできます。この例では、特定の権限と所有者を持つ新しいディレクトリを作成します：
 ```shell
 ansible abc -m file -a "dest=/path/user1/new mode=777 owner=user1 group=user1 state=directory"
-```- `ansible`：Ansibleコマンドです。
+```
+- `ansible`：Ansibleコマンドです。
 - `abc`：「abc」グループのサーバーを対象にします。
 - `-m file`：ファイルシステム操作に「file」モジュールを使用することを示します。
 - `-a "dest=/path/user1/new mode=777 owner=user1 group=user1 state=directory"`：ここでは新しいディレクトリの宛先パスを指定し、権限を777に設定し、所有者とグループを「user1」に設定し、 `state=directory` オプションでディレクトリを作成することを指定します。
