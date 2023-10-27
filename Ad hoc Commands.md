@@ -1,12 +1,7 @@
-# Ad-hoc Commands アドホックコマンド
+# Ad-hoc Commands 
 Ad-hoc commands in Ansible are like quick, one-time instructions you can give to your servers. You can think of them as simple, direct commands that you run to do specific tasks on remote servers. They are often used for tasks that you don't need to automate or repeat frequently. 
 
-Ansibleのアドホックコマンドは、リモートサーバー上で特定のタスクを実行するための、素早い一度性の指示と考えることができます。これらは、自動化したり頻繁に繰り返す必要のないタスクに使用されます。
-
-
 For example, let's say you need to reboot all the servers in your company. You can use Ansible ad-hoc commands to do this. The command you would use could look something like this:
-
-たとえば、会社のすべてのサーバーを再起動する必要がある場合、Ansibleアドホックコマンドを使用できます。次のようなコマンドを使用します：
 ```shell
 ansible all -i inventory_file -m shell -a "reboot"
 ```
@@ -18,22 +13,10 @@ Let's break this down:
 - `-a "reboot"`: This is the actual command you want to run, which is "reboot."
 This command will instruct Ansible to log in to all the servers in your inventory and run the "reboot" command, effectively rebooting them.
 
-これを分解してみましょう：
-- `ansible`：これはAnsibleコマンドです。
-- `all`：これは、インベントリで定義されたすべてのサーバーを対象にしたいことを指定します。
-- `-i inventory_file`：ここでは、管理対象のサーバーリストを含むインベントリファイルを指定します。
-- `-m shell`：これはAnsibleに「shell」モジュールを使用するように指示し、リモートサーバー上でシェルコマンドを実行するようにします。
-- `-a "reboot"`：これは実際に実行したいコマンドで、ここでは「reboot」です。このコマンドはサーバーを再起動します。
-このコマンドにより、Ansibleはインベントリ内のすべてのサーバーにログインし、「reboot」コマンドを実行して、サーバーを再起動します。
-
 ## Ansible Playbooks(Ansibleプレイブック):
 While ad-hoc commands are great for quick tasks, Ansible playbooks are used for more complex, repeatable, and automated tasks. Playbooks are like scripts that describe a series of steps or tasks that Ansible should perform on one or more servers.
 
-アドホックコマンドは簡単なタスクに適していますが、Ansibleプレイブックはより複雑で、繰り返し可能な自動化タスクに使用されます。プレイブックは、Ansibleが1つまたは複数のサーバー上で実行するべき手順またはタスクの一連を記述したスクリプトのようなものです。
-
 For example, if you need to install and configure a web server on multiple servers, you can create an Ansible playbook to do this. Here's a simplified example of what a playbook might look like:
-
-たとえば、複数のサーバーにWebサーバーをインストールして設定する必要がある場合、これを実行するAnsibleプレイブックを作成できます。次は、プレイブックの簡略化された例です：
 ```yaml
 ---
 - name: Install and Configure Web Server
@@ -57,33 +40,25 @@ For example, if you need to install and configure a web server on multiple serve
         dest: /var/www/html
 ```
 In this example:
-この例では次のようになります：
 ### YAML Document Separator (文書セパレータ) (---)
 
 The `---` at the beginning of the file is a YAML document separator, indicating the start of a new YAML document.
-
-ファイルの先頭にある「---」はYAML文書セパレータで、新しいYAML文書の開始を示しています。
 
 ### List of Plays プレイのリスト
 
 A play in Ansible is a section of tasks that are run on a specific set of hosts. In this playbook, there is a single play, which is represented by a list (a sequence in YAML).
 
-Ansibleのプレイは、特定のホストセットに対して実行されるタスクのセクションです。このプレイブックには、リスト（YAMLでのシーケンス）で表現された1つのプレイがあります。
-
 ### Play Metadata プレイのメタデータ
 
 - `name` is a key that assigns a name to the play. It's a description of what this play does. 
-`name` はプレイに名前を割り当てるキーで、プレイが何を行うかを説明します。
 
 ### Hosts ホスト
 
 - `hosts` is a key that specifies which hosts this play will target. In this case, it targets hosts labeled as "webservers".  
-`hosts`は、このプレイが対象とするホストを指定するキーです。この場合、 "webservers" とラベル付けされたホストを対象にします。
 
 ### Tasks List タスクリスト
 
 - `tasks` is a key that defines a list of tasks to be executed in this play.  
-`tasks`は、このプレイで実行されるタスクのリストを定義するキーです。
 
 ### Task Definitions タスクの定義
 
@@ -101,65 +76,38 @@ Each task is represented as a dictionary with several key-value pairs:
   - `src` is the source path of the local HTML files.
   - `dest` is the destination path on the remote host where the HTML files should be copied.
 This playbook, when executed, will install the Apache web server, start the Apache service, and copy HTML files to the specified directory on the target hosts labeled as "webservers." It demonstrates key-value pairs, lists, boolean values, and the modular structure of an Ansible playbook.
- 
-各タスクは、いくつかのキーと値のペアを持つ辞書として表現されます：
-- `name`はタスクに対して人が読みやすい名前を提供します。
-- `become`はブール値(`yes`)を持つキーで、タスクがスーパーユーザー権限（sudoの使用など）で実行されるべきことを示します。
-- `apt`はUbuntu / Debianベースのシステムでパッケージを管理するためのモジュールです。
-  - `name`はインストールするパッケージの名前（apache2）を指定します
-  - `state`はパッケージが "present"（インストール済み）の状態であるべきことを指定します。
-- `service`はサービスを管理するためのモジュールです。
-  - `name`はサービスの名前(`apache2`)を指定します。
-  - `state`はサービスが "started"（開始済み）であるべきことを指定します。
--  `copy`はファイルのコピーに使用するモジュールです。
-  - `src`はローカルのHTMLファイルのソースパスを指定します。
-  - `dest`はHTMLファイルがコピーされるリモートホスト上のディレクトリのパスを指定します。
-このプレイブックは実行されると、Apacheウェブサーバーをインストールし、Apacheサービスを開始し、HTMLファイルを指定されたディレクトリにコピーします。これは、Ansibleプレイブックのキー-値ペア、リスト、ブール値、およびモジュールの構造をデモンストレーションしています。
 
-To run this playbook, you'd use the `ansible-playbook` command(このプレイブックを実行するには、`ansible-playbook`コマンドを使用します:
+To run this playbook, you'd use the `ansible-playbook` command:
 ```shell
 ansible-playbook -i inventory_file webserver_playbook.yml
 ```
 This command tells Ansible to execute the tasks defined in the playbook on the servers specified in the inventory.
 
-このコマンドは、インベントリで指定されたサーバー上でプレイブックで定義されたタスクを実行するようにAnsibleに指示します。
-
 In summary, ad-hoc commands are for quick, one-off tasks, while Ansible playbooks are used for more complex and automated tasks that you can run repeatedly. Playbooks are especially useful for configuration management and deployment, where you need consistency and repeatability in your server management tasks.
-
-要約すると、アドホックコマンドは素早いタスクに適しており、Ansibleプレイブックはより複雑で自動化されたタスクに使用されます。プレイブックは特に設定管理と展開に適しており、サーバー管理タスクに一貫性と繰り返し可能性が必要な場合に便利です。
 
 ## Parallelism 並列処理:
 
 Parallelism in Ansible allows you to execute tasks on multiple servers simultaneously. This can speed up operations, especially when you need to perform actions like rebooting multiple servers. In this example, we want to reboot servers in the "abc" group using 12 parallel forks, which means you'll reboot up to 12 servers at a time.
-
-Ansibleの並列処理は、複数のサーバーでタスクを同時に実行できるようにします。これは特に複数のサーバーを再起動するなどのアクションを高速化するのに役立ちます。この例では、「abc」グループのサーバーを12個の並列フォークで再起動することを考えています。これは、最大で12台のサーバーを同時に再起動することを意味します。
-
-## SSH Agent and Authentication SSHエージェントと認証:
+## SSH Agent and Authentication:
 
 Before running Ansible commands, you should ensure that your SSH agent is set up and your SSH key is added for authentication. The SSH agent is a program that manages your SSH keys securely, so you don't have to type your SSH passphrase repeatedly. Here's how you set it up:
 
-Ansibleコマンドを実行する前に、SSHエージェントが設定され、SSHキーが認証に追加されていることを確認する必要があります。SSHエージェントはSSHキーを安全に管理するプログラムで、SSHパスフレーズを繰り返し入力する必要がないようにします。セットアップ方法は以下の通りです：
-
-1. Start an SSH agent and open a new shell session (SSHエージェントを起動し、新しいシェルセッションを開始します):
+1. Start an SSH agent and open a new shell session:
    ```shell
    ssh-agent bash
    ```
-2. Add your SSH key to the agent (SSHキーをエージェントに追加します):
+2. Add your SSH key to the agent:
    ```shell
    ssh-add ~/.ssh/id_rsa
    ```
 Now, you're ready to run Ansible commands with SSH authentication.
 
-これで、SSH認証を使用してAnsibleコマンドを実行する準備が整いました。
-
 **Running Ad-hoc Reboot Commands (アドホック再起動コマンドの実行):**
 To reboot servers in the "abc" group using 12 parallel forks, you can use the following Ansible ad-hoc command:
-
-「abc」グループのサーバーを12個の並列フォークで再起動するには、次のAnsibleアドホックコマンドを使用できます：
 ```shell
 ansible abc -a "/sbin/reboot" -f 12
 ```
-**Here's a breakdown of the command (このコマンドの詳細):**
+**Here's a breakdown of the command:**
 - `ansible`: This is the Ansible command.
 - `abc`: It specifies that you want to target the servers in the "abc" group from your Ansible inventory.
 - `-a "/sbin/reboot"`: This is the actual command you want to run, which is "/sbin/reboot." It will initiate a server reboot.
@@ -167,34 +115,19 @@ ansible abc -a "/sbin/reboot" -f 12
 
 By running this command, Ansible will log in to the servers in the "abc" group and execute the "/sbin/reboot" command on up to 12 servers at a time.
 
-- `ansible`：これはAnsibleコマンドです。
-- `abc`：これはAnsibleインベントリで定義された「abc」グループのサーバーを対象にすることを指定します。
-- `-a "/sbin/reboot"`：これは実際に実行したいコマンドで、"/sbin/reboot" です。これによりサーバーが再起動されます。
-- `-f 12`：このフラグは、再起動コマンドを最大で12台のサーバーで並列に実行することを指定します。
-
-このコマンドを実行することで、Ansibleは「abc」グループのサーバーにログインし、最大で12台のサーバーで "/sbin/reboot" コマンドを実行します。
-
 **Changing the Username (ユーザー名の変更):**
 By default, Ansible will use your current user account for SSH authentication. If you want to specify a different username, you can do so using the `-u` option. For example, if your username is "username," you can use the following command:
-
-デフォルトでは、AnsibleはSSH認証に現在のユーザーアカウントを使用します。異なるユーザー名を指定する場合、 `-u`オプションを使用できます。たとえば、ユーザー名が「username」である場合、次のコマンドを使用できます：
 ```shell
 ansible abc -a "/sbin/reboot" -f 12 -u username
 ```
 This will ensure that Ansible uses the "username" for SSH authentication when connecting to the servers in the "abc" group.
 
-これにより、Ansibleは「abc」グループのサーバーへの接続時に「username」を使用するようになります。
-
 In summary, parallelism allows you to perform tasks on multiple servers simultaneously, and setting up the SSH agent and specifying the username are essential for secure and efficient server management with Ansible ad-hoc commands.
-
-要約すると、並列処理は複数のサーバーでタスクを同時に実行できるようにし、SSHエージェントを設定し、ユーザー名を指定することは、Ansibleアドホックコマンドを使用したセキュアかつ効率的なサーバー管理にとって重要です。
 
 ## File/Folder/Directory Management ファイル/フォルダ/ディレクトリの管理
 ### Transferring Files (ファイルの転送):
 
 You can use Ansible ad-hoc commands to securely copy files to multiple servers in parallel. Explaining how to use Ansible ad-hoc commands for file transfer, creating directories, and deleting files and directories with examples for a beginner. In this example, we'll transfer a file from your local machine to multiple servers in the "abc" group:
-
-Ansibleのアドホックコマンドを使用して、ファイルを複数のサーバーに安全にコピーすることができます。ファイル転送に関するAnsibleアドホックコマンド、ディレクトリの作成、ファイルおよびディレクトリの削除について説明し、初心者向けの例を示します。この例では、ローカルマシンから「abc」グループの複数のサーバーにファイルを転送します：
 ```shell
 ansible abc -m copy -a "src=/path/to/local/file dest=/tmp/remote-file"
 ```
@@ -203,10 +136,6 @@ ansible abc -m copy -a "src=/path/to/local/file dest=/tmp/remote-file"
 - `-m copy`: This indicates that you want to use the "copy" module for file transfer.
 - `-a "src=/path/to/local/file dest=/tmp/remote-file"`: This is where you specify the source and destination of the file you want to copy. It will copy the file from your local machine to `/tmp/remote-file` on each server in the "abc" group.
 
-- `ansible`：これはAnsibleコマンドです。
-- `abc`：これはAnsibleインベントリで定義された「abc」グループのサーバーを対象にすることを指定します。
-- `-m copy`：これはファイル転送に「copy」モジュールを使用することを示します。
-- `-a "src=/path/to/local/file dest=/tmp/remote-file"`：これはコピーするファイルのソースと宛先を指定する場所です。それにより、ファイルがローカルマシンから「abc」グループ内の各サーバーの「`/tmp/remote-file`」にコピーされます。
 ### Creating a New Directory:
 
 You can use Ansible ad-hoc commands to create directories on multiple servers. In this example, we'll create a new directory with specific permissions and ownership:
@@ -320,3 +249,140 @@ This JSON represents a set of facts about a server. Let's go through each part s
 You can use these facts in your playbooks to make decisions based on the characteristics of your servers. For example, you might use facts like the operating system to install specific software packages or use facts about the server's IP address for network configuration.
 
 In summary, gathering facts using Ansible is a valuable feature that provides you with detailed information about your servers, which you can then use to make informed decisions in your automation tasks.
+
+
+# アドホックコマンド
+Ansibleのアドホックコマンドは、リモートサーバー上で特定のタスクを実行するための、素早い一度性の指示と考えることができます。これらは、自動化したり頻繁に繰り返す必要のないタスクに使用されます。
+
+たとえば、会社のすべてのサーバーを再起動する必要がある場合、Ansibleアドホックコマンドを使用できます。次のようなコマンドを使用します：
+```shell
+ansible all -i inventory_file -m shell -a "reboot"
+```
+これを分解してみましょう：
+- `ansible`：これはAnsibleコマンドです。
+- `all`：これは、インベントリで定義されたすべてのサーバーを対象にしたいことを指定します。
+- `-i inventory_file`：ここでは、管理対象のサーバーリストを含むインベントリファイルを指定します。
+- `-m shell`：これはAnsibleに「shell」モジュールを使用するように指示し、リモートサーバー上でシェルコマンドを実行するようにします。
+- `-a "reboot"`：これは実際に実行したいコマンドで、ここでは「reboot」です。このコマンドはサーバーを再起動します。
+このコマンドにより、Ansibleはインベントリ内のすべてのサーバーにログインし、「reboot」コマンドを実行して、サーバーを再起動します。
+
+## Ansibleプレイブック:
+アドホックコマンドは簡単なタスクに適していますが、Ansibleプレイブックはより複雑で、繰り返し可能な自動化タスクに使用されます。プレイブックは、Ansibleが1つまたは複数のサーバー上で実行するべき手順またはタスクの一連を記述したスクリプトのようなものです。
+
+たとえば、複数のサーバーにWebサーバーをインストールして設定する必要がある場合、これを実行するAnsibleプレイブックを作成できます。次は、プレイブックの簡略化された例です：
+```yaml
+---
+- name: Install and Configure Web Server
+  hosts: webservers
+  tasks:
+    - name: Install Apache
+      become: yes
+      apt:
+        name: apache2
+        state: present
+
+    - name: Start Apache Service
+      become: yes
+      service:
+        name: apache2
+        state: started
+
+    - name: Copy HTML files
+      copy:
+        src: /path/to/local/html
+        dest: /var/www/html
+```
+この例では次のようになります：
+### YAML Document Separator (文書セパレータ) (---)
+ファイルの先頭にある「---」はYAML文書セパレータで、新しいYAML文書の開始を示しています。
+### List of Plays プレイのリスト
+
+Ansibleのプレイは、特定のホストセットに対して実行されるタスクのセクションです。このプレイブックには、リスト（YAMLでのシーケンス）で表現された1つのプレイがあります。
+
+### Play Metadata プレイのメタデータ
+
+- `name` はプレイに名前を割り当てるキーで、プレイが何を行うかを説明します。
+
+### Hosts ホスト
+
+- `hosts`は、このプレイが対象とするホストを指定するキーです。この場合、 "webservers" とラベル付けされたホストを対象にします。
+
+### Tasks List タスクリスト
+
+- `tasks`は、このプレイで実行されるタスクのリストを定義するキーです。
+
+### Task Definitions タスクの定義
+
+各タスクは、いくつかのキーと値のペアを持つ辞書として表現されます：
+- `name`はタスクに対して人が読みやすい名前を提供します。
+- `become`はブール値(`yes`)を持つキーで、タスクがスーパーユーザー権限（sudoの使用など）で実行されるべきことを示します。
+- `apt`はUbuntu / Debianベースのシステムでパッケージを管理するためのモジュールです。
+  - `name`はインストールするパッケージの名前（apache2）を指定します
+  - `state`はパッケージが "present"（インストール済み）の状態であるべきことを指定します。
+- `service`はサービスを管理するためのモジュールです。
+  - `name`はサービスの名前(`apache2`)を指定します。
+  - `state`はサービスが "started"（開始済み）であるべきことを指定します。
+-  `copy`はファイルのコピーに使用するモジュールです。
+  - `src`はローカルのHTMLファイルのソースパスを指定します。
+  - `dest`はHTMLファイルがコピーされるリモートホスト上のディレクトリのパスを指定します。
+このプレイブックは実行されると、Apacheウェブサーバーをインストールし、Apacheサービスを開始し、HTMLファイルを指定されたディレクトリにコピーします。これは、Ansibleプレイブックのキー-値ペア、リスト、ブール値、およびモジュールの構造をデモンストレーションしています。
+
+このプレイブックを実行するには、`ansible-playbook`コマンドを使用します:
+```shell
+ansible-playbook -i inventory_file webserver_playbook.yml
+```
+このコマンドは、インベントリで指定されたサーバー上でプレイブックで定義されたタスクを実行するようにAnsibleに指示します。
+
+要約すると、アドホックコマンドは素早いタスクに適しており、Ansibleプレイブックはより複雑で自動化されたタスクに使用されます。プレイブックは特に設定管理と展開に適しており、サーバー管理タスクに一貫性と繰り返し可能性が必要な場合に便利です。
+
+## Parallelism 並列処理:
+
+Ansibleの並列処理は、複数のサーバーでタスクを同時に実行できるようにします。これは特に複数のサーバーを再起動するなどのアクションを高速化するのに役立ちます。この例では、「abc」グループのサーバーを12個の並列フォークで再起動することを考えています。これは、最大で12台のサーバーを同時に再起動することを意味します。
+
+## SSH Agent and Authentication SSHエージェントと認証:
+
+Ansibleコマンドを実行する前に、SSHエージェントが設定され、SSHキーが認証に追加されていることを確認する必要があります。SSHエージェントはSSHキーを安全に管理するプログラムで、SSHパスフレーズを繰り返し入力する必要がないようにします。セットアップ方法は以下の通りです：
+
+1. SSHエージェントを起動し、新しいシェルセッションを開始します:
+   ```shell
+   ssh-agent bash
+   ```
+2. SSHキーをエージェントに追加します:
+   ```shell
+   ssh-add ~/.ssh/id_rsa
+   ```
+これで、SSH認証を使用してAnsibleコマンドを実行する準備が整いました。
+
+**Running Ad-hoc Reboot Commands (アドホック再起動コマンドの実行):**
+「abc」グループのサーバーを12個の並列フォークで再起動するには、次のAnsibleアドホックコマンドを使用できます：
+```shell
+ansible abc -a "/sbin/reboot" -f 12
+```
+**Here's a breakdown of the command (このコマンドの詳細):**
+- `ansible`：これはAnsibleコマンドです。
+- `abc`：これはAnsibleインベントリで定義された「abc」グループのサーバーを対象にすることを指定します。
+- `-a "/sbin/reboot"`：これは実際に実行したいコマンドで、"/sbin/reboot" です。これによりサーバーが再起動されます。
+- `-f 12`：このフラグは、再起動コマンドを最大で12台のサーバーで並列に実行することを指定します。
+
+このコマンドを実行することで、Ansibleは「abc」グループのサーバーにログインし、最大で12台のサーバーで "/sbin/reboot" コマンドを実行します。
+
+**Changing the Username (ユーザー名の変更):**
+デフォルトでは、AnsibleはSSH認証に現在のユーザーアカウントを使用します。異なるユーザー名を指定する場合、 `-u`オプションを使用できます。たとえば、ユーザー名が「username」である場合、次のコマンドを使用できます：
+```shell
+ansible abc -a "/sbin/reboot" -f 12 -u username
+```
+これにより、Ansibleは「abc」グループのサーバーへの接続時に「username」を使用するようになります。
+
+要約すると、並列処理は複数のサーバーでタスクを同時に実行できるようにし、SSHエージェントを設定し、ユーザー名を指定することは、Ansibleアドホックコマンドを使用したセキュアかつ効率的なサーバー管理にとって重要です。
+
+## File/Folder/Directory Management ファイル/フォルダ/ディレクトリの管理
+### Transferring Files (ファイルの転送):
+
+Ansibleのアドホックコマンドを使用して、ファイルを複数のサーバーに安全にコピーすることができます。ファイル転送に関するAnsibleアドホックコマンド、ディレクトリの作成、ファイルおよびディレクトリの削除について説明し、初心者向けの例を示します。この例では、ローカルマシンから「abc」グループの複数のサーバーにファイルを転送します：
+```shell
+ansible abc -m copy -a "src=/path/to/local/file dest=/tmp/remote-file"
+```
+- `ansible`：これはAnsibleコマンドです。
+- `abc`：これはAnsibleインベントリで定義された「abc」グループのサーバーを対象にすることを指定します。
+- `-m copy`：これはファイル転送に「copy」モジュールを使用することを示します。
+- `-a "src=/path/to/local/file dest=/tmp/remote-file"`：これはコピーするファイルのソースと宛先を指定する場所です。それにより、ファイルがローカルマシンから「abc」グループ内の各サーバーの「`/tmp/remote-file`」にコピーされます。
