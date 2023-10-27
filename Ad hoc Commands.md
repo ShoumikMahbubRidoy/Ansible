@@ -88,12 +88,10 @@ Ansibleのプレイは、特定のホストセットに対して実行される�
 ### Task Definitions タスクの定義
 
 Each task is represented as a dictionary with several key-value pairs:
-各タスクは、いくつかのキーと値のペアを持つ辞書として表現されます：
 
 - `name` provides a human-readable name for the task. 
-`name`はタスクに対して人が読みやすい名前を提供します。
 - `become` is a key with a boolean value (`yes`). It indicates that the task should run with elevated privileges (like using sudo). 
-`become`はブール値(`yes`)を持つキーで、タスクがスーパーユーザー権限（sudoの使用など）で実行されるべきことを示します。
+
 - `apt` is the module used to manage packages in Ubuntu/Debian-based systems.
 `apt`はUbuntu / Debianベースのシステムでパッケージを管理するためのモジュールです。
   - `name` specifies the name of the package to be installed (`apache2`).
@@ -105,6 +103,10 @@ Each task is represented as a dictionary with several key-value pairs:
 - `copy` is the module used to copy files.
   - `src` is the source path of the local HTML files.
   - `dest` is the destination path on the remote host where the HTML files should be copied.
+ 
+各タスクは、いくつかのキーと値のペアを持つ辞書として表現されます：
+`name`はタスクに対して人が読みやすい名前を提供します。
+`become`はブール値(`yes`)を持つキーで、タスクがスーパーユーザー権限（sudoの使用など）で実行されるべきことを示します。
 
 This playbook, when executed, will install the Apache web server, start the Apache service, and copy HTML files to the specified directory on the target hosts labeled as "webservers." It demonstrates key-value pairs, lists, boolean values, and the modular structure of an Ansible playbook.
 
