@@ -13,7 +13,7 @@ Let's break this down:
 - `-a "reboot"`: This is the actual command you want to run, which is "reboot."
 This command will instruct Ansible to log in to all the servers in your inventory and run the "reboot" command, effectively rebooting them.
 
-## Ansible Playbooks(Ansibleプレイブック):
+## Ansible Playbooks:
 While ad-hoc commands are great for quick tasks, Ansible playbooks are used for more complex, repeatable, and automated tasks. Playbooks are like scripts that describe a series of steps or tasks that Ansible should perform on one or more servers.
 
 For example, if you need to install and configure a web server on multiple servers, you can create an Ansible playbook to do this. Here's a simplified example of what a playbook might look like:
@@ -40,27 +40,27 @@ For example, if you need to install and configure a web server on multiple serve
         dest: /var/www/html
 ```
 In this example:
-### YAML Document Separator (文書セパレータ) (---)
+### YAML Document Separator (---)
 
 The `---` at the beginning of the file is a YAML document separator, indicating the start of a new YAML document.
 
-### List of Plays プレイのリスト
+### List of Plays
 
 A play in Ansible is a section of tasks that are run on a specific set of hosts. In this playbook, there is a single play, which is represented by a list (a sequence in YAML).
 
-### Play Metadata プレイのメタデータ
+### Play Metadata
 
 - `name` is a key that assigns a name to the play. It's a description of what this play does. 
 
-### Hosts ホスト
+### Hosts
 
 - `hosts` is a key that specifies which hosts this play will target. In this case, it targets hosts labeled as "webservers".  
 
-### Tasks List タスクリスト
+### Tasks List
 
 - `tasks` is a key that defines a list of tasks to be executed in this play.  
 
-### Task Definitions タスクの定義
+### Task Definitions
 
 Each task is represented as a dictionary with several key-value pairs:
 
@@ -85,7 +85,7 @@ This command tells Ansible to execute the tasks defined in the playbook on the s
 
 In summary, ad-hoc commands are for quick, one-off tasks, while Ansible playbooks are used for more complex and automated tasks that you can run repeatedly. Playbooks are especially useful for configuration management and deployment, where you need consistency and repeatability in your server management tasks.
 
-## Parallelism 並列処理:
+## Parallelism:
 
 Parallelism in Ansible allows you to execute tasks on multiple servers simultaneously. This can speed up operations, especially when you need to perform actions like rebooting multiple servers. In this example, we want to reboot servers in the "abc" group using 12 parallel forks, which means you'll reboot up to 12 servers at a time.
 ## SSH Agent and Authentication:
@@ -102,12 +102,14 @@ Before running Ansible commands, you should ensure that your SSH agent is set up
    ```
 Now, you're ready to run Ansible commands with SSH authentication.
 
-**Running Ad-hoc Reboot Commands (アドホック再起動コマンドの実行):**
+**Running Ad-hoc Reboot Commands:**
+
 To reboot servers in the "abc" group using 12 parallel forks, you can use the following Ansible ad-hoc command:
 ```shell
 ansible abc -a "/sbin/reboot" -f 12
 ```
 **Here's a breakdown of the command:**
+
 - `ansible`: This is the Ansible command.
 - `abc`: It specifies that you want to target the servers in the "abc" group from your Ansible inventory.
 - `-a "/sbin/reboot"`: This is the actual command you want to run, which is "/sbin/reboot." It will initiate a server reboot.
@@ -115,7 +117,8 @@ ansible abc -a "/sbin/reboot" -f 12
 
 By running this command, Ansible will log in to the servers in the "abc" group and execute the "/sbin/reboot" command on up to 12 servers at a time.
 
-**Changing the Username (ユーザー名の変更):**
+**Changing the Username:**
+
 By default, Ansible will use your current user account for SSH authentication. If you want to specify a different username, you can do so using the `-u` option. For example, if your username is "username," you can use the following command:
 ```shell
 ansible abc -a "/sbin/reboot" -f 12 -u username
@@ -124,8 +127,8 @@ This will ensure that Ansible uses the "username" for SSH authentication when co
 
 In summary, parallelism allows you to perform tasks on multiple servers simultaneously, and setting up the SSH agent and specifying the username are essential for secure and efficient server management with Ansible ad-hoc commands.
 
-## File/Folder/Directory Management ファイル/フォルダ/ディレクトリの管理
-### Transferring Files (ファイルの転送):
+## File/Folder/Directory Management
+### Transferring Files:
 
 You can use Ansible ad-hoc commands to securely copy files to multiple servers in parallel. Explaining how to use Ansible ad-hoc commands for file transfer, creating directories, and deleting files and directories with examples for a beginner. In this example, we'll transfer a file from your local machine to multiple servers in the "abc" group:
 ```shell
@@ -136,7 +139,9 @@ ansible abc -m copy -a "src=/path/to/local/file dest=/tmp/remote-file"
 - `-m copy`: This indicates that you want to use the "copy" module for file transfer.
 - `-a "src=/path/to/local/file dest=/tmp/remote-file"`: This is where you specify the source and destination of the file you want to copy. It will copy the file from your local machine to `/tmp/remote-file` on each server in the "abc" group.
 
-### Creating a New Directory:
+### Creating a New Directory 新しいディレクトリの作成:
+
+Ansibleのアドホックコマンドを使用して、複数のサーバー上にディレクトリを作成することもできます。この例では、特定の権限と所有者を持つ新しいディレクトリを作成します：
 
 You can use Ansible ad-hoc commands to create directories on multiple servers. In this example, we'll create a new directory with specific permissions and ownership:
 ```shell
@@ -147,9 +152,16 @@ ansible abc -m file -a "dest=/path/user1/new mode=777 owner=user1 group=user1 st
 - `-m file`: Using the "file" module for file system operations.
 - `-a "dest=/path/user1/new mode=777 owner=user1 group=user1 state=directory"`: Here, you specify the destination path for the new directory, set its permissions to 777, and define the owner and group as "user1." The `state=directory` option indicates that you want to create a directory.
 
-### Deleting a Directory and Files:
+- `ansible`：Ansibleコマンドです。
+- `abc`：「abc」グループのサーバーを対象にします。
+- `-m file`：ファイルシステム操作に「file」モジュールを使用することを示します。
+- `-a "dest=/path/user1/new mode=777 owner=user1 group=user1 state=directory"`：ここでは新しいディレクトリの宛先パスを指定し、権限を777に設定し、所有者とグループを「user1」に設定し、 `state=directory` オプションでディレクトリを作成することを指定します。
+
+### Deleting a Directory and Files ディレクトリとファイルの削除:
 
 You can also use Ansible ad-hoc commands to delete directories and their contents on multiple servers. In this example, we'll delete a directory and its files:
+
+Ansibleを使用してディレクトリまたはファイルをサーバーから削除することもできます。この例は、ファイルを削除する方法を示しています：
 ```shell
 ansible abc -m file -a "dest=/path/user1/new state=absent"
 ```
@@ -158,10 +170,22 @@ ansible abc -m file -a "dest=/path/user1/new state=absent"
 - `-m file`: Using the "file" module for file system operations.
 - `-a "dest=/path/user1/new state=absent"`: Here, you specify the destination path for the directory you want to delete, and `state=absent` indicates that you want to remove the directory and its contents.
 
-## Package Management
-### Checking if a Yum Package is Installed:
+- `ansible`：Ansibleコマンドです。
+- `abc`：「abc」グループのサーバーを対象にします。
+- `-m file`：ファイルシステム操作に「file」モジュールを使用することを示します。
+- `-a "dest=/path/user1/new state=absent"`：ここでは削除するファイルのパスを指定し、 state=absent オプションでファイルを削除することを指定します。
+ディレクトリを削除する場合も同様の方法で操作します。
+
+These Ansible ad hoc commands allow you to manage files and directories efficiently.
+
+これらのAnsibleアドホックコマンドを使用することで、ファイルとディレクトリの管理を効率的に行うことができます。
+
+## Package Management パッケージ管理
+### Checking if a Yum Package is Installed Yumパッケージのインストール状態を確認する:
 
 You can use Ansible ad-hoc commands to check if a package is installed on multiple servers without updating it. In this example, we'll check if the package named "demo-tomcat-1" is installed on servers in the "abc" group:
+
+パッケージを更新せずに、複数のサーバー上でパッケージがインストールされているかどうかを確認するために、Ansibleアドホックコマンドを使用できます。この例では、"abc" グループのサーバー上にパッケージ名 "demo-tomcat-1" がインストールされているかどうかを確認します：
 ```shell
 ansible abc -m yum -a "name=demo-tomcat-1 state=present"
 ```
@@ -170,9 +194,16 @@ ansible abc -m yum -a "name=demo-tomcat-1 state=present"
 - `-m yum`: This indicates that you want to use the yum module for package management.
 - `-a "name=demo-tomcat-1 state=present"`: Here, you specify the package name as "demo-tomcat-1" and set the state to "present," which means you want to check if the package is installed.
 
-### Checking if a Yum Package is Not Installed:
+- `ansible`：これはAnsibleコマンドです。
+- `abc`：Ansibleインベントリで定義された "abc" グループのサーバーを対象にすることを指定します。
+- `-m yum`：パッケージ管理にyumモジュールを使用することを示します。
+- `-a "name=demo-tomcat-1 state=present"`：ここではパッケージ名を "demo-tomcat-1" とし、状態を "present" に設定し、パッケージがインストールされているかどうかを確認します。
+
+### Checking if a Yum Package is Not Installed Yumパッケージの未インストール状態を確認する:
 
 You can also use Ansible ad-hoc commands to check if a package is not installed on multiple servers. In this example, we'll check if the package named "demo-tomcat-1" is not installed on servers in the "abc" group:
+
+また、Ansibleアドホックコマンドを使用して、パッケージが複数のサーバーにインストールされていないかどうかも確認できます。この例では、"abc" グループのサーバー上にパッケージ名 "demo-tomcat-1" がインストールされていないかどうかを確認します：
 ```shell
 ansible abc -m yum -a "name=demo-tomcat-1 state=absent"
 ```
@@ -181,9 +212,16 @@ ansible abc -m yum -a "name=demo-tomcat-1 state=absent"
 - `-m yum`: Using the yum module for package management.
 - `-a "name=demo-tomcat-1 state=absent"`: Here, you specify the package name as "demo-tomcat-1" and set the state to "absent," which means you want to check if the package is not installed.
 
-### Checking for the Latest Version of a Yum Package:
+- `ansible`：Ansibleコマンドです。
+- `abc`： "abc" グループのサーバーを対象にします。
+- `-m yum`：パッケージ管理にyumモジュールを使用することを示します。
+- `-a "name=demo-tomcat-1 state=absent"`：ここではパッケージ名を "demo-tomcat-1" とし、状態を "absent" に設定し、パッケージがインストールされていないかどうかを確認します。
+
+### Checking for the Latest Version of a Yum Package Yumパッケージの最新バージョンを確認する:
 
 You can also use Ansible ad-hoc commands to ensure that the latest version of a package is installed on multiple servers. In this example, we'll check if the latest version of the package named "demo-tomcat-1" is installed on servers in the "abc" group:
+
+さらに、Ansibleアドホックコマンドを使用して、パッケージの最新バージョンが複数のサーバーにインストールされていることを確認できます。この例では、"abc" グループのサーバー上にパッケージ名 "demo-tomcat-1" の最新バージョンがインストールされていることを確認します：
 ```shell
 ansible abc -m yum -a "name=demo-tomcat-1 state=latest"
 ```
@@ -192,13 +230,24 @@ ansible abc -m yum -a "name=demo-tomcat-1 state=latest"
 - `-m yum`: Using the yum module for package management.
 - `-a "name=demo-tomcat-1 state=latest"`: Here, you specify the package name as "demo-tomcat-1" and set the state to "latest," which means you want to ensure that the latest version of the package is installed.
 
+- `ansible`：Ansibleコマンドです。
+- `abc`： "abc" グループのサーバーを対象にします。
+- `-m yum`：パッケージ管理にyumモジュールを使用することを示します。
+- `-a "name=demo-tomcat-1 state=latest"`：ここではパッケージ名を "demo-tomcat-1" とし、状態を "latest" に設定し、パッケージの最新バージョンがインストールされていることを確認します。
+
 These ad-hoc commands allow you to manage packages using `yum` on multiple servers easily. They are useful for checking the status of packages, ensuring the presence or absence of packages, and updating packages to their latest versions, making software management more efficient.
 
-## Gathering System Facts:
+これらのアドホックコマンドを使用することで、複数のサーバーで `yum` を使用してパッケージを管理することが容易になります。これらのコマンドはパッケージの状態を確認し、パッケージの存在または不在を確認し、パッケージを最新バージョンに更新するのに役立ち、ソフトウェアの管理を効率化します。
+
+## Gathering System Facts システムのファクト取得:
 
 Ansible can collect various pieces of information about the remote servers, such as operating system details, hardware information, network configuration, and more. This information is called "facts." Gathering facts is useful for implementing conditional statements in your playbooks or for understanding the state of your remote servers.
 
+Ansibleは、リモートサーバーに関するさまざまな情報を収集できます。これには、オペレーティングシステムの詳細、ハードウェア情報、ネットワーク構成などが含まれます。これらの情報は「ファクト」と呼ばれ、プレイブック内の条件文を実装するか、リモートサーバーの状態を把握するのに役立ちます。
+
 To gather facts about all your servers, you can use the following Ansible ad-hoc command:
+
+すべてのサーバーに関するファクトを収集するには、次のAnsibleアドホックコマンドを使用できます：
 ```shell
 ansible all -m setup
 ```
@@ -206,15 +255,27 @@ ansible all -m setup
 - `all`: It specifies that you want to target all servers defined in your inventory.
 - `-m setup`: This indicates that you want to use the "setup" module, which is designed to gather system facts.
 
+- `ansible`：これはAnsibleコマンドです。
+- `all`：インベントリで定義されたすべてのサーバーを対象にすることを指定します。
+- `-m setup`：これはシステムファクトを収集するために「setup」モジュールを使用することを示します。
+
 **Example:**
 
 Suppose you have a group of servers in your inventory, and you want to gather facts about them. Here's how you can do it with the Ansible ad-hoc command:
+
+**例:**
+
+インベントリ内のサーバーグループを持っていると仮定し、それらに関するファクトを収集したい場合、Ansibleアドホックコマンドを使用できます：
 ```shell
 ansible all -m setup
 ```
 When you run this command, Ansible will connect to each server in your inventory and collect a wide range of facts about each system. These facts can include information about the server's hardware, operating system, network configuration, and more. Ansible will then display this information on your screen.
 
 Here's a simplified example of the kind of information you might receive:
+
+このコマンドを実行すると、Ansibleはインベントリ内の各サーバーに接続し、各システムに関するさまざまなファクトを収集します。これらのファクトには、サーバーのハードウェア、オペレーティングシステム、ネットワーク構成などの情報が含まれます。Ansibleはこの情報を画面に表示します。
+
+次に、簡略化した情報の一部を示す例を紹介します：
 ```json
 {
     "ansible_facts": {
@@ -249,6 +310,19 @@ This JSON represents a set of facts about a server. Let's go through each part s
 You can use these facts in your playbooks to make decisions based on the characteristics of your servers. For example, you might use facts like the operating system to install specific software packages or use facts about the server's IP address for network configuration.
 
 In summary, gathering facts using Ansible is a valuable feature that provides you with detailed information about your servers, which you can then use to make informed decisions in your automation tasks.
+
+このJSONは、サーバーに関するファクトのセットを表しています。各部分をステップごとに説明します：
+
+- `"ansible_facts"`: これはJSONオブジェクトのルートキーで、中に含まれるデータがAnsibleのファクトであることを示します。
+- `"ansible_distribution"`: このファクトはサーバーで実行されているLinuxディストリビューションに関する情報を提供します。この例では、サーバーはUbuntuを実行しています。
+- `"ansible_os_family"`: このファクトはオペレーティングシステムファミリーに関する情報を提供します。この場合、Debianファミリーであることが示されています。UbuntuはDebianファミリーに属しています。
+- `"ansible_processor"`: このファクトはサーバーのCPUアーキテクチャに関する情報を提供します。ここでは64ビットプロセッサを示す "x86_64" です。
+- `"ansible_kernel"`: このファクトはオペレーティングシステムのカーネルバージョンを指定します。カーネルはオペレーティングシステムの重要な部分です。この例ではバージョン "4.19.104" です。
+- `"ansible_hostname"`: このファクトはサーバーのホスト名を提供します。この場合、サーバーのホスト名は "server1" です。
+- `"ansible_default_ipv4"`: このファクトの一部は、サーバーのデフォルトのIPv4アドレスと関連するネットワークインターフェイスに関する情報を提供します。アドレスは "192.168.1.100" で、インターフェイスは "eth0" です。
+- `"ansible_default_ipv6"`: IPv4ファクトと同様に、このファクトはサーバーのデフォルトのIPv6アドレスと関連するネットワークインターフェイスに関する情報を提供します。IPv6アドレスは "fe80::abcd:1234" で、インターフェイスは "eth0" です。
+これはAnsibleが収集できる多くのファクトの一部です。これらのファクトは、プレイブック内で使用して、ターゲットサーバーの特性に基づいて判断を行い、特定のタスクを実行できます。例えば、"ansible_distribution"を使用してディストリビューション固有のパッケージをインストールするか、"ansible_default_ipv4"を使用してネットワーク設定を構成することができます。ファクトは、効果的なサーバー管理を支援する貴重な情報を提供します。
+これらのファクトを使用して、サーバーの特性に基づいて判断を下し、Ansibleプレイブック内で特定のタスクを実行できます。ファクトは、効果的なサーバー管理のための貴重な情報を提供します。
 
 
 # アドホックコマンド
