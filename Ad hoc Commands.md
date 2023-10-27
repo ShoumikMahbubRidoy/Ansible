@@ -85,14 +85,19 @@ Ansibleのプレイは、特定のホストセットに対して実行される�
 - `tasks` is a key that defines a list of tasks to be executed in this play.  
 `tasks`は、このプレイで実行されるタスクのリストを定義するキーです。
 
-### Task Definitions 
+### Task Definitions タスクの定義
 
 Each task is represented as a dictionary with several key-value pairs:
+各タスクは、いくつかのキーと値のペアを持つ辞書として表現されます：
 
 - `name` provides a human-readable name for the task.
+`name`はタスクに対して人が読みやすい名前を提供します。
 - `become` is a key with a boolean value (`yes`). It indicates that the task should run with elevated privileges (like using sudo).
+ `become`はブール値(`yes`)を持つキーで、タスクがスーパーユーザー権限（sudoの使用など）で実行されるべきことを示します。
 - `apt` is the module used to manage packages in Ubuntu/Debian-based systems.
+`apt`はUbuntu / Debianベースのシステムでパッケージを管理するためのモジュールです。
   - `name` specifies the name of the package to be installed (`apache2`).
+    `name`はインストールするパッケージの名前（apache2）を指定します
   - `state` specifies that the package should be in a "present" state.
 - `service` is the module used to manage services.
   - `name` specifies the service name (`apache2`).
