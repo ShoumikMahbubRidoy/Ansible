@@ -121,37 +121,45 @@ To run this playbook, you'd use the `ansible-playbook` command(このプレイ�
 ansible-playbook -i inventory_file webserver_playbook.yml
 ```
 This command tells Ansible to execute the tasks defined in the playbook on the servers specified in the inventory.
+
 このコマンドは、インベントリで指定されたサーバー上でプレイブックで定義されたタスクを実行するようにAnsibleに指示します。
 
 In summary, ad-hoc commands are for quick, one-off tasks, while Ansible playbooks are used for more complex and automated tasks that you can run repeatedly. Playbooks are especially useful for configuration management and deployment, where you need consistency and repeatability in your server management tasks.
+
 要約すると、アドホックコマンドは素早いタスクに適しており、Ansibleプレイブックはより複雑で自動化されたタスクに使用されます。プレイブックは特に設定管理と展開に適しており、サーバー管理タスクに一貫性と繰り返し可能性が必要な場合に便利です。
 
 ## Parallelism 並列処理:
 
 Parallelism in Ansible allows you to execute tasks on multiple servers simultaneously. This can speed up operations, especially when you need to perform actions like rebooting multiple servers. In this example, we want to reboot servers in the "abc" group using 12 parallel forks, which means you'll reboot up to 12 servers at a time.
+
 Ansibleの並列処理は、複数のサーバーでタスクを同時に実行できるようにします。これは特に複数のサーバーを再起動するなどのアクションを高速化するのに役立ちます。この例では、「abc」グループのサーバーを12個の並列フォークで再起動することを考えています。これは、最大で12台のサーバーを同時に再起動することを意味します。
 
 ## SSH Agent and Authentication SSHエージェントと認証:
 
 Before running Ansible commands, you should ensure that your SSH agent is set up and your SSH key is added for authentication. The SSH agent is a program that manages your SSH keys securely, so you don't have to type your SSH passphrase repeatedly. Here's how you set it up:
+
 Ansibleコマンドを実行する前に、SSHエージェントが設定され、SSHキーが認証に追加されていることを確認する必要があります。SSHエージェントはSSHキーを安全に管理するプログラムで、SSHパスフレーズを繰り返し入力する必要がないようにします。セットアップ方法は以下の通りです：
 
-1. Start an SSH agent and open a new shell session:
+1. Start an SSH agent and open a new shell session (SSHエージェントを起動し、新しいシェルセッションを開始します):
    ```shell
    ssh-agent bash
    ```
-2. Add your SSH key to the agent:
+2. Add your SSH key to the agent (SSHキーをエージェントに追加します):
    ```shell
    ssh-add ~/.ssh/id_rsa
    ```
 Now, you're ready to run Ansible commands with SSH authentication.
 
-**Running Ad-hoc Reboot Commands:**
+これで、SSH認証を使用してAnsibleコマンドを実行する準備が整いました。
+
+**Running Ad-hoc Reboot Commands (アドホック再起動コマンドの実行):**
 To reboot servers in the "abc" group using 12 parallel forks, you can use the following Ansible ad-hoc command:
+
+「abc」グループのサーバーを12個の並列フォークで再起動するには、次のAnsibleアドホックコマンドを使用できます：
 ```shell
 ansible abc -a "/sbin/reboot" -f 12
 ```
-**Here's a breakdown of the command:**
+**Here's a breakdown of the command (このコマンドの詳細):**
 - `ansible`: This is the Ansible command.
 - `abc`: It specifies that you want to target the servers in the "abc" group from your Ansible inventory.
 - `-a "/sbin/reboot"`: This is the actual command you want to run, which is "/sbin/reboot." It will initiate a server reboot.
@@ -159,19 +167,34 @@ ansible abc -a "/sbin/reboot" -f 12
 
 By running this command, Ansible will log in to the servers in the "abc" group and execute the "/sbin/reboot" command on up to 12 servers at a time.
 
-**Changing the Username:**
+- `ansible`：これはAnsibleコマンドです。
+- `abc`：これはAnsibleインベントリで定義された「abc」グループのサーバーを対象にすることを指定します。
+- `-a "/sbin/reboot"`：これは実際に実行したいコマンドで、"/sbin/reboot" です。これによりサーバーが再起動されます。
+- `-f 12`：このフラグは、再起動コマンドを最大で12台のサーバーで並列に実行することを指定します。
+
+このコマンドを実行することで、Ansibleは「abc」グループのサーバーにログインし、最大で12台のサーバーで "/sbin/reboot" コマンドを実行します。
+
+**Changing the Username (ユーザー名の変更):**
 By default, Ansible will use your current user account for SSH authentication. If you want to specify a different username, you can do so using the `-u` option. For example, if your username is "username," you can use the following command:
+
+デフォルトでは、AnsibleはSSH認証に現在のユーザーアカウントを使用します。異なるユーザー名を指定する場合、 `-u`オプションを使用できます。たとえば、ユーザー名が「username」である場合、次のコマンドを使用できます：
 ```shell
 ansible abc -a "/sbin/reboot" -f 12 -u username
 ```
 This will ensure that Ansible uses the "username" for SSH authentication when connecting to the servers in the "abc" group.
 
+これにより、Ansibleは「abc」グループのサーバーへの接続時に「username」を使用するようになります。
+
 In summary, parallelism allows you to perform tasks on multiple servers simultaneously, and setting up the SSH agent and specifying the username are essential for secure and efficient server management with Ansible ad-hoc commands.
 
-## File/Folder/Directory Management
-### Transferring Files:
+要約すると、並列処理は複数のサーバーでタスクを同時に実行できるようにし、SSHエージェントを設定し、ユーザー名を指定することは、Ansibleアドホックコマンドを使用したセキュアかつ効率的なサーバー管理にとって重要です。
+
+## File/Folder/Directory Management ファイル/フォルダ/ディレクトリの管理
+### Transferring Files (ファイルの転送):
 
 You can use Ansible ad-hoc commands to securely copy files to multiple servers in parallel. Explaining how to use Ansible ad-hoc commands for file transfer, creating directories, and deleting files and directories with examples for a beginner. In this example, we'll transfer a file from your local machine to multiple servers in the "abc" group:
+
+Ansibleのアドホックコマンドを使用して、ファイルを複数のサーバーに安全にコピーすることができます。ファイル転送に関するAnsibleアドホックコマンド、ディレクトリの作成、ファイルおよびディレクトリの削除について説明し、初心者向けの例を示します。この例では、ローカルマシンから「abc」グループの複数のサーバーにファイルを転送します：
 ```shell
 ansible abc -m copy -a "src=/path/to/local/file dest=/tmp/remote-file"
 ```
@@ -179,6 +202,11 @@ ansible abc -m copy -a "src=/path/to/local/file dest=/tmp/remote-file"
 - `abc`: It specifies that you want to target the servers in the "abc" group from your Ansible inventory.
 - `-m copy`: This indicates that you want to use the "copy" module for file transfer.
 - `-a "src=/path/to/local/file dest=/tmp/remote-file"`: This is where you specify the source and destination of the file you want to copy. It will copy the file from your local machine to `/tmp/remote-file` on each server in the "abc" group.
+
+- `ansible`：これはAnsibleコマンドです。
+- `abc`：これはAnsibleインベントリで定義された「abc」グループのサーバーを対象にすることを指定します。
+- `-m copy`：これはファイル転送に「copy」モジュールを使用することを示します。
+- `-a "src=/path/to/local/file dest=/tmp/remote-file"`：これはコピーするファイルのソースと宛先を指定する場所です。それにより、ファイルがローカルマシンから「abc」グループ内の各サーバーの「`/tmp/remote-file`」にコピーされます。
 ### Creating a New Directory:
 
 You can use Ansible ad-hoc commands to create directories on multiple servers. In this example, we'll create a new directory with specific permissions and ownership:
