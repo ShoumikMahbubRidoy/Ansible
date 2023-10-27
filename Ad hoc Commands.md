@@ -91,11 +91,8 @@ Each task is represented as a dictionary with several key-value pairs:
 
 - `name` provides a human-readable name for the task. 
 - `become` is a key with a boolean value (`yes`). It indicates that the task should run with elevated privileges (like using sudo). 
-
 - `apt` is the module used to manage packages in Ubuntu/Debian-based systems.
-`apt`はUbuntu / Debianベースのシステムでパッケージを管理するためのモジュールです。
   - `name` specifies the name of the package to be installed (`apache2`).
-    `name`はインストールするパッケージの名前（apache2）を指定します
   - `state` specifies that the package should be in a "present" state.
 - `service` is the module used to manage services.
   - `name` specifies the service name (`apache2`).
@@ -103,28 +100,41 @@ Each task is represented as a dictionary with several key-value pairs:
 - `copy` is the module used to copy files.
   - `src` is the source path of the local HTML files.
   - `dest` is the destination path on the remote host where the HTML files should be copied.
+This playbook, when executed, will install the Apache web server, start the Apache service, and copy HTML files to the specified directory on the target hosts labeled as "webservers." It demonstrates key-value pairs, lists, boolean values, and the modular structure of an Ansible playbook.
  
 各タスクは、いくつかのキーと値のペアを持つ辞書として表現されます：
-`name`はタスクに対して人が読みやすい名前を提供します。
-`become`はブール値(`yes`)を持つキーで、タスクがスーパーユーザー権限（sudoの使用など）で実行されるべきことを示します。
+- `name`はタスクに対して人が読みやすい名前を提供します。
+- `become`はブール値(`yes`)を持つキーで、タスクがスーパーユーザー権限（sudoの使用など）で実行されるべきことを示します。
+- `apt`はUbuntu / Debianベースのシステムでパッケージを管理するためのモジュールです。
+  - `name`はインストールするパッケージの名前（apache2）を指定します
+  - `state`はパッケージが "present"（インストール済み）の状態であるべきことを指定します。
+- `service`はサービスを管理するためのモジュールです。
+  - `name`はサービスの名前(`apache2`)を指定します。
+  - `state`はサービスが "started"（開始済み）であるべきことを指定します。
+-  `copy`はファイルのコピーに使用するモジュールです。
+  - `src`はローカルのHTMLファイルのソースパスを指定します。
+  - `dest`はHTMLファイルがコピーされるリモートホスト上のディレクトリのパスを指定します。
+このプレイブックは実行されると、Apacheウェブサーバーをインストールし、Apacheサービスを開始し、HTMLファイルを指定されたディレクトリにコピーします。これは、Ansibleプレイブックのキー-値ペア、リスト、ブール値、およびモジュールの構造をデモンストレーションしています。
 
-This playbook, when executed, will install the Apache web server, start the Apache service, and copy HTML files to the specified directory on the target hosts labeled as "webservers." It demonstrates key-value pairs, lists, boolean values, and the modular structure of an Ansible playbook.
-
-To run this playbook, you'd use the `ansible-playbook` command:
+To run this playbook, you'd use the `ansible-playbook` command(このプレイブックを実行するには、`ansible-playbook`コマンドを使用します:
 ```shell
 ansible-playbook -i inventory_file webserver_playbook.yml
 ```
 This command tells Ansible to execute the tasks defined in the playbook on the servers specified in the inventory.
+このコマンドは、インベントリで指定されたサーバー上でプレイブックで定義されたタスクを実行するようにAnsibleに指示します。
 
 In summary, ad-hoc commands are for quick, one-off tasks, while Ansible playbooks are used for more complex and automated tasks that you can run repeatedly. Playbooks are especially useful for configuration management and deployment, where you need consistency and repeatability in your server management tasks.
+要約すると、アドホックコマンドは素早いタスクに適しており、Ansibleプレイブックはより複雑で自動化されたタスクに使用されます。プレイブックは特に設定管理と展開に適しており、サーバー管理タスクに一貫性と繰り返し可能性が必要な場合に便利です。
 
-## Parallelism:
+## Parallelism 並列処理:
 
 Parallelism in Ansible allows you to execute tasks on multiple servers simultaneously. This can speed up operations, especially when you need to perform actions like rebooting multiple servers. In this example, we want to reboot servers in the "abc" group using 12 parallel forks, which means you'll reboot up to 12 servers at a time.
+Ansibleの並列処理は、複数のサーバーでタスクを同時に実行できるようにします。これは特に複数のサーバーを再起動するなどのアクションを高速化するのに役立ちます。この例では、「abc」グループのサーバーを12個の並列フォークで再起動することを考えています。これは、最大で12台のサーバーを同時に再起動することを意味します。
 
-## SSH Agent and Authentication:
+## SSH Agent and Authentication SSHエージェントと認証:
 
 Before running Ansible commands, you should ensure that your SSH agent is set up and your SSH key is added for authentication. The SSH agent is a program that manages your SSH keys securely, so you don't have to type your SSH passphrase repeatedly. Here's how you set it up:
+Ansibleコマンドを実行する前に、SSHエージェントが設定され、SSHキーが認証に追加されていることを確認する必要があります。SSHエージェントはSSHキーを安全に管理するプログラムで、SSHパスフレーズを繰り返し入力する必要がないようにします。セットアップ方法は以下の通りです：
 
 1. Start an SSH agent and open a new shell session:
    ```shell
