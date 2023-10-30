@@ -10,11 +10,11 @@ Imagine you're managing a bunch of web servers, and they all need the same setup
 When you create an Ansible role, it should follow a specific directory structure. This structure helps Ansible know where to find your tasks, variables, and templates. Here's a breakdown of the key directories and their purposes:
 
 1. **Role Directory (Role Name):** This is the root directory for your role, and its name should match the role's name. It's usually located within the `/roles` directory. This is where your role's content resides.
-Example:
-```bash
-/roles
-    /web_server
-```
+    Example:
+    ```bash
+    /roles
+        /web_server
+    ```
 2. a
 3. s
 4. d
