@@ -176,7 +176,7 @@ ansible abc -m yum -a "name=demo-tomcat-1 state=present"
 - `-m yum`: This indicates that you want to use the yum module for package management.
 - `-a "name=demo-tomcat-1 state=present"`: Here, you specify the package name as "demo-tomcat-1" and set the state to "present," which means you want to check if the package is installed.
 
-### Checking if a Yum Package is Not Installed Yumパッケージの未インストール状態を確認する:
+### Checking if a Yum Package is Not Installed Yum:
 
 You can also use Ansible ad-hoc commands to check if a package is not installed on multiple servers. In this example, we'll check if the package named "demo-tomcat-1" is not installed on servers in the "abc" group:
 
@@ -191,8 +191,6 @@ ansible abc -m yum -a "name=demo-tomcat-1 state=absent"
 ### Checking for the Latest Version of a Yum Package:
 
 You can also use Ansible ad-hoc commands to ensure that the latest version of a package is installed on multiple servers. In this example, we'll check if the latest version of the package named "demo-tomcat-1" is installed on servers in the "abc" group:
-
-さらに、Ansibleアドホックコマンドを使用して、パッケージの最新バージョンが複数のサーバーにインストールされていることを確認できます。この例では、"abc" グループのサーバー上にパッケージ名 "demo-tomcat-1" の最新バージョンがインストールされていることを確認します：
 ```shell
 ansible abc -m yum -a "name=demo-tomcat-1 state=latest"
 ```
