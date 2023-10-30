@@ -15,7 +15,44 @@ When you create an Ansible role, it should follow a specific directory structure
     /roles
         /web_server
     ```
-2. a
-3. s
-4. d
-5. f
+2. **Tasks:** The `tasks` directory contains the YAML files that define the tasks to be executed. These tasks are the actual steps your role will perform. Example:
+    ```bash
+    /roles
+    /web_server
+        /tasks
+            - main.yml
+    ```
+    In `main.yml`, you'd define tasks like installing software, configuring settings, and managing services.
+3. **Templates:** The `templates` directory holds template files. Templates are used to dynamically generate configuration files by substituting variables. Example:
+    ```bash
+    /roles
+    /web_server
+        /templates
+            - config_template.j2
+    ```
+4. **Vars (Variables):** The vars directory contains YAML files with variables specific to the role. These variables can be used in tasks and templates to make your role more flexible. Example:
+    ```bash
+    /roles
+    /web_server
+        /vars
+            - main.yml
+    ```
+    In `main.yml`, you'd define variables such as `web_port` or `install_path`.
+5. **Defaults:** The `defaults` directory holds default variable values for your role. These are used when no other values are provided. Example:
+    ```bash
+    /roles
+    /web_server
+        /defaults
+            - main.yml
+    ```
+    Default values are useful to ensure your role works out-of-the-box without needing to specify every variable.
+6. **Meta:** The meta directory contains metadata about your role, such as its dependencies. Example:
+    ```bash
+    /roles
+    /web_server
+        /meta
+            - main.yml
+    ```
+    In `main.yml`, you'd specify any roles that your role depends on.
+
+So, to create an Ansible role, you'd start with this directory structure, define tasks, variables, and templates in the respective directories, and then use your role to automate specific tasks on remote servers. This structured approach makes your automation projects more organized and easier to manage, especially as they become more complex.
