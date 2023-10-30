@@ -105,8 +105,19 @@ Here's a detailed explanation of an example playbook that deploys a WAR file to 
 ```
 **Explanation:**
 - **`name`:** A descriptive name for your playbook.
-- **`hosts`:** This defines the target hosts where you want to deploy your WAR file. You can specify a hostname, IP address, or a group of hosts from your Ansible inventory file. Replace your_target_host with your actual target.
-- **`roles`:** This section specifies which roles to apply to the target hosts. In this example, we are applying role_1 and role_2 to the target host.
+- **`hosts`:** This defines the target hosts where you want to deploy your WAR file. You can specify a hostname, IP address, or a group of hosts from your Ansible inventory file. Replace `your_target_host` with your actual target.
+- **`roles`:** This section specifies which roles to apply to the target hosts. In this example, we are applying `role_1` and `role_2` to the target host.
 - **`tasks`:** These are additional tasks that are not part of the roles but are specific to this playbook.
-    - The first task copies your .war file from your local machine to the remote server using the copy module. Make sure to replace /your_project_directory/ and /path/on/remote/server/ with actual paths.
-    - The second task restarts the application server where you deployed the WAR file using the service module. Replace your_application_server with the actual service name on your remote server.
+    - The first task copies your `.war` file from your local machine to the remote server using the copy module. Make sure to replace `/your_project_directory/` and `/path/on/remote/server/` with actual paths.
+    - The second task restarts the application server where you deployed the WAR file using the `service` module. Replace `your_application_server` with the actual service name on your remote server.
+
+### How to Run the Playbook:
+You can execute the playbook using the `ansible-playbook` command:
+```bash
+ansible-playbook /your_project_directory/playbooks/orchestrate.yml
+```
+This command will apply the roles specified in `orchestrate.yml` to the target host and deploy the `.war` file to the remote server.
+
+Remember to replace placeholders in the playbook (`your_target_host`, file paths, service names, etc.) with your actual configuration.
+
+This is a comprehensive example of how to use Ansible playbooks and roles to automate the deployment of a `.war` file to a remote server. It's a powerful way to keep your automation organized and reusable for different tasks and servers.
