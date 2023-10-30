@@ -168,7 +168,7 @@ These Ansible ad hoc commands allow you to manage files and directories efficien
 ### Checking if a Yum Package is Installed:
 
 You can use Ansible ad-hoc commands to check if a package is installed on multiple servers without updating it. In this example, we'll check if the package named "demo-tomcat-1" is installed on servers in the "abc" group:
-
+```shell
 ansible abc -m yum -a "name=demo-tomcat-1 state=present"
 ```
 - `ansible`: This is the Ansible command.
