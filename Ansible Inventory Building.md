@@ -55,4 +55,4 @@ For larger, dynamic environments where hosts are frequently created or destroyed
 
 In summary, Ansible inventory is a fundamental concept that allows you to organize and manage your infrastructure effectively. By defining groups, individual hosts, and variables, you can streamline your automation workflows. Whether you're dealing with a small set of servers or a large, ever-changing environment, Ansible's inventory system can help you manage and automate tasks across your servers and devices.
 
-Feel free to adapt and use this README code in your documentation.
+
