@@ -181,3 +181,53 @@ In addition to user-defined host groups, Ansible automatically creates two speci
 
 By using host groups effectively and leveraging these special groups, you can enhance the manageability and automation of your server infrastructure, whether you are dealing with a few servers or a large, complex environment.
 
+## Defining Nested Groups in Ansible Inventory
+
+In Ansible, you can organize your server inventory efficiently by using nested groups. Here explains the concept of nested groups and demonstrates how to create a nested group called "Japan" with child groups "Tokyo" and "Miyazaki."
+
+### What Are Nested Groups?
+
+Nested groups in Ansible allow you to create a hierarchical structure for organizing your server inventory. This structure simplifies the management of servers by categorizing them into various levels of groups.
+
+### Example: Creating the "Japan" Group
+
+Let's dive into an example to illustrate the concept:
+
+#### The Inventory File:
+
+```ini
+[Tokyo]
+tokyo-server1.example.com
+tokyo-server2.example.com
+
+[Miyazaki]
+miyazaki-server1.example.com
+miyazaki-server2.example.com
+
+[Japan:children]
+Tokyo
+Miyazaki
+```
+### Explanation
+
+In Ansible inventory, nested groups allow you to create a hierarchy of server groups. Let's break down the concept using an example:
+
+- `[Tokyo]` and `[Miyazaki]` are **child groups**. Each child group contains servers located in Tokyo and Miyazaki, respectively.
+
+- `[Japan:children]` is a **parent group**, denoted by the `:children` suffix. It includes the child groups `Tokyo` and `Miyazaki`. The parent group inherits all the hosts from its child groups.
+
+- Servers listed in both the `Tokyo` and `Miyazaki` child groups are also part of the "Japan" group.
+
+### Practical Use
+
+Nested groups are practical when you want to organize servers based on regions or other hierarchies. Here's how they can be used:
+
+- **Efficient Task Execution**: You can perform tasks on servers in the "Japan" group to apply actions to all servers in Japan. Simultaneously, you can execute specific tasks on servers in Tokyo or Miyazaki by targeting the child groups. This targeted approach simplifies task execution.
+
+### Further Customization
+
+If needed, you can customize the "Japan" group further by adding its list of managed hosts directly. Any hosts added to the "Japan" group will be merged with the hosts inherited from the child groups. This flexibility allows for fine-tuned organization and management of your server infrastructure.
+
+Creating nested groups in your Ansible inventory is a powerful way to structure and manage your server inventory efficiently. Whether dealing with different locations, environments, or server roles, nested groups help simplify tasks and make your infrastructure more manageable.
+
+
