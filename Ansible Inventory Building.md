@@ -50,8 +50,6 @@ You can also define **variables** for specific servers or groups, allowing you t
 
 For larger, dynamic environments where hosts are frequently created or destroyed, using **dynamic inventories** is more practical. Dynamic inventories, like the AWS EC2 inventory, can automatically generate host lists based on external sources.
 
-## Summary
-
 In summary, Ansible inventory is a fundamental concept that allows you to organize and manage your infrastructure effectively. By defining groups, individual hosts, and variables, you can streamline your automation workflows. Whether you're dealing with a small set of servers or a large, ever-changing environment, Ansible's inventory system can help you manage and automate tasks across your servers and devices.
 
 ## Managing Servers with Ansible: Static Inventory
