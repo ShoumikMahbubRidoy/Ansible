@@ -55,4 +55,20 @@ For larger, dynamic environments where hosts are frequently created or destroyed
 
 In summary, Ansible inventory is a fundamental concept that allows you to organize and manage your infrastructure effectively. By defining groups, individual hosts, and variables, you can streamline your automation workflows. Whether you're dealing with a small set of servers or a large, ever-changing environment, Ansible's inventory system can help you manage and automate tasks across your servers and devices.
 
+## Managing Servers with Ansible: Static Inventory
+### What is a Static Inventory?
 
+In Ansible, a static inventory is a text file that lists the servers (managed hosts) you want to work with. It can be created in various formats, but we'll focus on the common INI-style format for this guide.
+
+## Basic Inventory Format
+
+In its simplest form, you can list the hostnames or IP addresses of the managed hosts in your inventory, with each host on a separate line. Consider our web hosting example:
+
+```ini
+webserver1.example.com
+webserver2.example.com
+dbserver1.example.com
+dbserver2.example.com
+backupserver1.example.com
+backupserver2.example.com
+```
