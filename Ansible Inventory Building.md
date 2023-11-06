@@ -359,3 +359,17 @@ This structured format provides a hierarchical view of your Ansible inventory, w
 - The "Tokyo" and "Miyazaki" groups are custom groups that list specific hosts.
 
 Understanding this inventory structure is essential for efficiently managing your infrastructure, as it allows you to target specific groups or hosts when working with Ansible playbooks and automation tasks.
+
+Now, suppose you want to list hosts in the "Tokyo" group. You would run the following command:
+```shell
+ansible-navigator inventory -m stdout --graph Tokyo
+```
+
+The expected output would be:
+```less
+@Tokyo:
+|-- tokyo-server01.example.com
+|-- tokyo-server02.example.com
+```
+
+This output displays the hosts within the "Tokyo" group in a hierarchical format. It lists the hostnames that belong to the "Tokyo" group, making it easy to see which hosts are part of this group. You can use this information to target specific hosts or groups when running Ansible playbooks or tasks.
