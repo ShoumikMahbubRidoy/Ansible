@@ -339,15 +339,16 @@ Now, let's look at the result:
       "hosts": [
          "miyazaki-server01.example.com",
          "miyazaki-server02.example.com"
-      ]
-   }
-}
-```
+        ]
+     }
+  }
+  ```
+
 - **`_meta` Section:** The `_meta` section is typically used to store host-specific variables, but it may be empty, as in this example. If defined, it would contain variables associated with specific hosts in your inventory.
-- **`all` Group:** The "all" group is a special group that includes all other groups in your inventory. In this example, it serves as the parent group for "Japan" and "ungrouped."
-- **`Japan` Group:** The "Japan" group is a custom group that you've defined. It contains two child groups: "Tokyo" and "Miyazaki." This hierarchy helps organize your hosts based on their location or other criteria.
-- **`Tokyo` Group:** The "Tokyo" group is another custom group that you've defined. It lists the hosts located in Tokyo, which are "tokyo-server01.example.com" and "tokyo-server02.example.com."
-- **`Miyazaki` Group:** Similar to the "Tokyo" group, the "Miyazaki" group lists hosts located in Miyazaki: "miyazaki-server01.example.com" and "miyazaki-server02.example.com."
+1. **`all` Group:** The "all" group is a special group that includes all other groups in your inventory. In this example, it serves as the parent group for "Japan" and "ungrouped."
+2. **`Japan` Group:** The "Japan" group is a custom group that you've defined. It contains two child groups: "Tokyo" and "Miyazaki." This hierarchy helps organize your hosts based on their location or other criteria.
+3. **`Tokyo` Group:** The "Tokyo" group is another custom group that you've defined. It lists the hosts located in Tokyo, which are "tokyo-server01.example.com" and "tokyo-server02.example.com."
+4. **`Miyazaki` Group:** Similar to the "Tokyo" group, the "Miyazaki" group lists hosts located in Miyazaki: "miyazaki-server01.example.com" and "miyazaki-server02.example.com."
 
 ### Inventory Hierarchy
 
