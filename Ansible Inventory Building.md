@@ -437,3 +437,5 @@ Here, you have accessed the "ungrouped" group, and it contains "unassigned-host-
 The "ungrouped" group can be useful for managing hosts that do not fit into specific group categories. You can still target and work with these hosts using Ansible playbooks and tasks even if they are not part of any other group.
 
 The interactive mode allows you to navigate your inventory and explore its structure easily, making it a helpful tool for managing and working with Ansible inventories.
+
+> **Important Notice**: In your Ansible inventory, it is crucial to ensure that host names (individual servers) have unique names that do not conflict with any host group names. This practice helps maintain clarity and prevents unintended errors when managing your infrastructure with Ansible. Be mindful of naming conventions to streamline your automation tasks.
