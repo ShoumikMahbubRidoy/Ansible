@@ -281,3 +281,32 @@ The use of `[01:10]` in the hostname range simplifies naming conventions when ma
 
 By employing host ranges in your Ansible inventory, you can streamline server organization and management, enhancing the consistency and efficiency of your infrastructure.
 
+## Verifying the Inventory in Ansible
+
+In Ansible, it's crucial to ensure that your inventory is correctly configured to work with your hosts and groups. You can use the `ansible-navigator inventory` command to verify and explore your inventory. Let's break down the process:
+
+### Checking a Host in the Inventory
+
+- To confirm the presence of a specific host in your inventory, use the following command with the `--host` option, followed by the hostname you want to check. For instance:
+
+   ```shell
+   ansible-navigator inventory -m stdout --host tokyo-server01.example.com
+   ```
+This command is used to check if the host "tokyo-server01.example.com" exists in your Ansible inventory.
+- `ansible-navigator`: This is the command-line tool used to navigate and interact with Ansible projects and inventories.
+- `inventory`: This subcommand specifies that you want to perform actions related to the Ansible inventory.
+- `-m stdout`: This option specifies the module to use for the inventory action. In this case, it indicates that the output should be in a machine-readable format (JSON) and printed to the standard output (stdout).
+- `--host tokyo-server01.example.com`: Here, you are using the `--host` option to specify the hostname you want to check, which is "tokyo-server01.example.com."
+
+Now, let's look at the result:
+1. The first command, when executed, returns an empty JSON object {}. This indicates that the host "tokyo-server01.example.com" is present in the inventory.
+2. The second command, when executed, produces a warning message:
+   ```markdown
+   [WARNING]: Could not match supplied host pattern, ignoring: tokyo-server01.example.com
+   ```
+
+### Listing All Hosts in the Inventory
+- You can list all the hosts in your inventory using the `--list` option as follows:
+  ```shell
+   ansible-navigator inventory -m stdout --list
+   ```
