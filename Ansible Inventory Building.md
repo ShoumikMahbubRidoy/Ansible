@@ -310,3 +310,51 @@ Now, let's look at the result:
   ```shell
    ansible-navigator inventory -m stdout --list
    ```
+  This command provides structured JSON output that lists all the hosts and their respective groups in your inventory.
+  let's elaborate on the JSON output provided by the `ansible-navigator inventory -m stdout --list` command, based on the Tokyo and Miyazaki example:
+  ```json
+  {
+   "_meta": {
+      "hostvars": {}
+   },
+   "all": {
+      "children": [
+         "Japan",
+         "ungrouped"
+      ]
+   },
+   "Japan": {
+      "children": [
+         "Tokyo",
+         "Miyazaki"
+      ]
+   },
+   "Tokyo": {
+      "hosts": [
+         "tokyo-server01.example.com",
+         "tokyo-server02.example.com"
+      ]
+   },
+   "Miyazaki": {
+      "hosts": [
+         "miyazaki-server01.example.com",
+         "miyazaki-server02.example.com"
+      ]
+   }
+}
+```
+- **`_meta` Section:** The `_meta` section is typically used to store host-specific variables, but it may be empty, as in this example. If defined, it would contain variables associated with specific hosts in your inventory.
+- **`all` Group:** The "all" group is a special group that includes all other groups in your inventory. In this example, it serves as the parent group for "Japan" and "ungrouped."
+- **`Japan` Group:** The "Japan" group is a custom group that you've defined. It contains two child groups: "Tokyo" and "Miyazaki." This hierarchy helps organize your hosts based on their location or other criteria.
+- **`Tokyo` Group:** The "Tokyo" group is another custom group that you've defined. It lists the hosts located in Tokyo, which are "tokyo-server01.example.com" and "tokyo-server02.example.com."
+- **`Miyazaki` Group:** Similar to the "Tokyo" group, the "Miyazaki" group lists hosts located in Miyazaki: "miyazaki-server01.example.com" and "miyazaki-server02.example.com."
+
+### Inventory Hierarchy
+
+This structured format provides a hierarchical view of your Ansible inventory, which is organized as follows:
+
+- The "all" group serves as the parent group for all other groups.
+- The "Japan" group is a custom group that contains child groups for Tokyo and Miyazaki.
+- The "Tokyo" and "Miyazaki" groups are custom groups that list specific hosts.
+
+Understanding this inventory structure is essential for efficiently managing your infrastructure, as it allows you to target specific groups or hosts when working with Ansible playbooks and automation tasks.
