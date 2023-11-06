@@ -458,3 +458,29 @@ In this example, you're using the `ansible-navigator` playbook command to run a 
 The expected output does not provide any specific output as a result of changing the inventory file location. However, it ensures that Ansible uses the custom inventory file located at `/path/to/custom/custom_inventory.ini` when executing tasks or playbooks. This means Ansible will work with the hosts and groups defined in the custom inventory file you specified.
 
 By overriding the inventory location, you can use custom inventory files that suit the specific requirements of your project or environment, making your Ansible automation more flexible and adaptable.
+
+## Dynamic Inventories in Ansible
+
+In Ansible, inventories are traditionally static files listing hosts and groups for management. However, in dynamic and ever-changing environments, maintaining a static inventory becomes impractical. This is where dynamic inventories come into play.
+
+### Example Use Case
+
+Let's consider an example to understand dynamic inventories:
+
+Suppose you have a dynamic cloud infrastructure on Amazon Web Services (AWS), with EC2 instances frequently being created and terminated. Maintaining a static inventory file for these instances would be challenging, as it would constantly change.
+
+Instead, you can use a dynamic inventory script or plugin for AWS. When you run Ansible, it contacts your AWS account and fetches information about your EC2 instances. This dynamic inventory is always up-to-date because it reflects the current state of your AWS environment.
+
+Here's how it works:
+
+1. You write or use a dynamic inventory script or plugin for AWS. Ansible provides built-in dynamic inventory sources for popular cloud providers, but you can also create custom scripts if needed.
+
+2. When you run an Ansible command or playbook, you specify the dynamic inventory source (e.g., AWS) using the `-i` or `--inventory` option.
+
+3. Ansible contacts your AWS account and retrieves information about your EC2 instances, such as IP addresses, instance IDs, and tags.
+
+4. Ansible populates its inventory with this real-time information, allowing you to manage the EC2 instances as needed.
+
+Dynamic inventories ensure your Ansible automation remains synchronized with your dynamic infrastructure. As your AWS environment evolves, Ansible's inventory adapts accordingly.
+
+In summary, dynamic inventories are a valuable tool in cloud and rapidly changing environments, where maintaining a static inventory is impractical. They keep your automation up-to-date and streamline tasks on a dynamic infrastructure.
