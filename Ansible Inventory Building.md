@@ -373,3 +373,67 @@ The expected output would be:
 ```
 
 This output displays the hosts within the "Tokyo" group in a hierarchical format. It lists the hostnames that belong to the "Tokyo" group, making it easy to see which hosts are part of this group. You can use this information to target specific hosts or groups when running Ansible playbooks or tasks.
+
+When you run `ansible-navigator inventory` interactively, you will see a menu-driven interface like this:
+```sql
+Title            Description
+0│Browse groups   Explore each inventory group and group members
+1│Browse hosts    Explore the inventory with a list of all hosts
+```
+
+Type :0 to select "Browse Groups":
+
+This menu allows you to select whether you want to browse groups or hosts. In this example, we'll select "Browse Groups" by typing `0` and pressing Enter.
+
+After selecting "Browse Groups," you'll see a list of groups in your inventory:
+```sql
+Name            Taxonomy      Type
+0│Japan          all group
+1│ungrouped      all group
+```
+
+You can select a group by typing its number, or you can press `ESC` to exit the Groups menu. For example, let's select the "Japan" group by typing `0` and pressing Enter.
+
+After selecting "Japan," you'll see the child groups:
+```sql
+Name            Taxonomy      Type
+0│Tokyo          all group
+1│Miyazaki       all group
+```
+
+Type :<group-number> to select a group or press ESC to exit the Groups menu:
+
+Now, select a child group, such as "Tokyo," by typing `0` and pressing Enter. This will lead you to the hosts in the "Tokyo" group:
+```vbnet
+Inventory hostname
+0│tokyo-server01.example.com
+1│tokyo-server02.example.com
+```
+
+Press the ESC key twice to exit ansible-navigator inventory.
+
+You can select a specific host or group to explore its contents. In this example, you've reached the "tokyo-server01.example.com" and "tokyo-server02.example.com" hosts within the "Tokyo" group.
+
+If you select "1" (ungrouped) after choosing to "Browse Groups" when using `ansible-navigator inventory` interactively, here's how it would look:
+```sql
+Name            Taxonomy      Type
+0│Japan          all group
+1│ungrouped      all group
+```
+
+Type :1 to select "ungrouped" group or press ESC to exit the Groups menu:
+
+In this case, let's select "1" to explore the "ungrouped" group. After selecting "ungrouped," you will see the hosts or items within this group, which typically includes hosts that are not part of any specific group. The output may look like this:
+```vbnet
+Inventory hostname
+0│unassigned-host-01.example.com
+1│unassigned-host-02.example.com
+```
+
+Press the `ESC` key twice to exit ansible-navigator inventory.
+
+Here, you have accessed the "ungrouped" group, and it contains "unassigned-host-01.example.com" and "unassigned-host-02.example.com." These hosts are not categorized into any other groups, so they are part of the "ungrouped" group by default.
+
+The "ungrouped" group can be useful for managing hosts that do not fit into specific group categories. You can still target and work with these hosts using Ansible playbooks and tasks even if they are not part of any other group.
+
+The interactive mode allows you to navigate your inventory and explore its structure easily, making it a helpful tool for managing and working with Ansible inventories.
