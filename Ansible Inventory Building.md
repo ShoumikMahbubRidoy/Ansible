@@ -439,3 +439,22 @@ The "ungrouped" group can be useful for managing hosts that do not fit into spec
 The interactive mode allows you to navigate your inventory and explore its structure easily, making it a helpful tool for managing and working with Ansible inventories.
 
 > **Important Notice**: In your Ansible inventory, it is crucial to ensure that host names (individual servers) have unique names that do not conflict with any host group names. This practice helps maintain clarity and prevents unintended errors when managing your infrastructure with Ansible. Be mindful of naming conventions to streamline your automation tasks.
+
+## Overriding the Inventory Location
+By default, Ansible uses the `/etc/ansible/hosts` file as the system's default static inventory file. However, in more complex environments or when working on specific projects, it's common practice to use a custom inventory file located in a different path.
+
+You can override the inventory location by using the `--inventory` or `-i` option followed by the path to your custom inventory file when running Ansible commands. This allows you to use a custom inventory file that's tailored to your project or environment.
+
+Example with Expected Output
+Suppose you have a custom inventory file named `custom_inventory.ini` located in the `/path/to/custom/ directory`. You want to use this custom inventory file when running an Ansible playbook.
+
+Here's the command to run the playbook with the custom inventory file:
+```shell
+ansible-navigator playbook -i /path/to/custom/custom_inventory.ini my_playbook.yml
+```
+
+In this example, you're using the `ansible-navigator` playbook command to run a playbook (`my_playbook.yml`). The `-i` option specifies the inventory file, which is set to `/path/to/custom/custom_inventory.ini`.
+
+The expected output does not provide any specific output as a result of changing the inventory file location. However, it ensures that Ansible uses the custom inventory file located at `/path/to/custom/custom_inventory.ini` when executing tasks or playbooks. This means Ansible will work with the hosts and groups defined in the custom inventory file you specified.
+
+By overriding the inventory location, you can use custom inventory files that suit the specific requirements of your project or environment, making your Ansible automation more flexible and adaptable.
